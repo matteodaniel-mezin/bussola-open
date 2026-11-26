@@ -67,11 +67,11 @@ Colori e caratteri stanno tutti in `public/tema.css`: puoi cambiarli anche a man
 | Vocale della sera trascritto sul Mac | `brew install uv ffmpeg`, Mac con chip Apple |
 | Calendario in diretta | indirizzi iCal in `config.local.json` |
 | Call da Fathom | `fathomApiKey` in `config.local.json`, o il connettore di Claude |
-| Push dei progetti da GitHub | `brew install gh`, `gh auth login` |
+| Push dei progetti da GitHub | `gh` e `gh auth login`. Mac: `brew install gh`. Windows: `winget install --id GitHub.cli` |
 | Ricerca per significato nelle lezioni | `swiftc -O strumenti/vettori.swift -o strumenti/vettori` |
-| Lettore dei corsi in PDF | `brew install poppler` |
+| Lettore dei corsi in PDF | `pdftotext` di Poppler. Mac: `brew install poppler`. Windows: `scoop install poppler` o `choco install poppler` |
 
-Le pagine base funzionano su qualsiasi sistema con Node.js. Vocali, avvisi, ricerca e widget sono pensati per macOS.
+Le pagine base funzionano su qualsiasi sistema con Node.js, anche Windows e Linux. Bussola trova `gh` e `pdftotext` nelle cartelle solite e nel PATH. Restano solo per macOS: trascrizione dei vocali (Mac con chip Apple), avvisi del sistema, ricerca per significato, widget e avvio automatico.
 
 ## Licenza
 

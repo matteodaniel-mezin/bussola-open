@@ -372,7 +372,7 @@ Una mappa di studio: testa `tipo: mappa`, `stato: in corso` o `finita`; sezioni 
 
 ### Un corso da studiare
 
-Una nota in `Inbox` o `Lezioni` con testa `tipo: corso`, `mappa: "[[Nome della mappa]]"`, `giornata_attuale: G3`. Le giornate sono `### G1. Titolo`, raggruppate in `## Lezione 1. Nome (G1 - G2)`, con le caselle `- [ ] G1. Titolo`. Se in `config.local.json` c'è `"corsiPdf": { "<nome del file senza .md>": "<percorso del PDF>" }`, il lettore mostra il PDF (serve `pdftotext`, da `brew install poppler`). Il segnalibro aggiorna `giornata_attuale`.
+Una nota in `Inbox` o `Lezioni` con testa `tipo: corso`, `mappa: "[[Nome della mappa]]"`, `giornata_attuale: G3`. Le giornate sono `### G1. Titolo`, raggruppate in `## Lezione 1. Nome (G1 - G2)`, con le caselle `- [ ] G1. Titolo`. Se in `config.local.json` c'è `"corsiPdf": { "<nome del file senza .md>": "<percorso del PDF>" }`, il lettore mostra il PDF (serve `pdftotext`: su Mac `brew install poppler`, su Windows `scoop install poppler` o `choco install poppler`). Il segnalibro aggiorna `giornata_attuale`.
 
 ### I dati fuori dal vault (`dati/`)
 
@@ -390,7 +390,7 @@ Esempi completi in `dati-esempio/` dopo il primo avvio.
 
 ## Passo 6. Installare e avviare Bussola
 
-Requisiti: un Mac (le funzioni base vanno anche altrove, ma vocali, avvisi e ricerca sono per macOS) e Node.js 20 o più recente (`https://nodejs.org` o `brew install node`). Nessun pacchetto da installare.
+Requisiti: Mac, Windows o Linux (trascrizione dei vocali, avvisi, ricerca per significato, widget e avvio automatico sono solo per macOS) e Node.js 20 o più recente (`https://nodejs.org` o `brew install node`). Nessun pacchetto da installare.
 
 ```bash
 git clone https://github.com/<utente>/bussola-open.git
@@ -428,7 +428,7 @@ Funzioni in più, facoltative:
 
 - **Vocali**: `brew install uv ffmpeg`. La trascrizione usa `mlx-whisper` (Mac con chip Apple), scaricato al primo uso.
 - **Ricerca per significato** nelle lezioni: `cd strumenti && swiftc -O vettori.swift -o vettori`.
-- **Progetti da GitHub**: `brew install gh` e `gh auth login`.
+- **Progetti da GitHub**: `gh` e `gh auth login`. Mac: `brew install gh`; Windows: `winget install --id GitHub.cli`. Bussola cerca il programma nelle cartelle solite e nel PATH, anche con `.exe`.
 - **Widget sulla scrivania**: `swiftc -O widget/main.swift -o "widget/Bussola Widget.app/Contents/MacOS/bussola-widget" -framework Cocoa -framework WebKit` (prima crea la cartella `widget/Bussola Widget.app/Contents/MacOS`). Mostra i da fare di oggi.
 - **Sempre acceso**: adatta `modelli/com.bussola.server.plist`, copialo in `~/Library/LaunchAgents/` e attivalo con `launchctl bootstrap`. Il server parte all'accensione e si riavvia se cade.
 

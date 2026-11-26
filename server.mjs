@@ -372,7 +372,21 @@ async function liste() { const out = []; for (const f of (await elenco(DIR_LISTE
 async function conLista(b, fn) { const l = await leggiLista(nomeLista(b.nome)); if (!l) throw new Error('lista non trovata'); await fn(l); await salvaLista(l); return liste(); }
 
 // ---------- progetti ----------
-const BIN = async n => { for (const p of [`/opt/homebrew/bin/${n}`, `/usr/local/bin/${n}`, path.join(os.homedir(), '.local/bin', n), `/usr/bin/${n}`]) { try { await fs.access(p); return p; } catch { /* prossimo */ } } return null; };
+// Dove sta un programma (gh, pdftotext, uvx, ffmpeg). Prima le cartelle solite di macOS e Linux, poi quelle di Windows,
+// poi tutte le cartelle del PATH. Su Windows si cercano anche le estensioni .exe, .cmd e .bat.
+// Il server partito all'avvio del computer (launchctl, Utilità di pianificazione) può avere un PATH corto: per questo le cartelle fisse.
+async function trovaProgramma(n, piattaforma = process.platform, ambiente = process.env) {
+  const win = piattaforma === 'win32'; const sep = win ? ';' : ':';
+  const nomi = win ? [`${n}.exe`, `${n}.cmd`, `${n}.bat`, n] : [n];
+  const pf = [ambiente.ProgramFiles, ambiente['ProgramFiles(x86)'], ambiente.LOCALAPPDATA && path.join(ambiente.LOCALAPPDATA, 'Programs')].filter(Boolean);
+  const cartelle = win
+    ? [...pf.flatMap(d => [path.join(d, 'GitHub CLI'), path.join(d, 'poppler', 'Library', 'bin'), path.join(d, 'poppler', 'bin')]), path.join(os.homedir(), '.local', 'bin'), path.join(os.homedir(), 'scoop', 'shims'), 'C:\\ProgramData\\chocolatey\\bin']
+    : ['/opt/homebrew/bin', '/usr/local/bin', path.join(os.homedir(), '.local/bin'), '/usr/bin'];
+  const tutte = [...new Set([...cartelle, ...String(ambiente.PATH || ambiente.Path || '').split(sep).filter(Boolean)])];
+  for (const d of tutte) for (const x of nomi) { const p = path.join(d, x); try { await fs.access(p); return p; } catch { /* prossimo */ } }
+  return null;
+}
+const BIN = n => trovaProgramma(n);
 let cachePush = { quando: 0, dati: {} };
 async function pushGithub(utente) {
   if (!utente || !/^[\w-]+$/.test(utente)) return {};
@@ -404,6 +418,7 @@ async function vocali() {
   return { domande: DOMANDE, vocali: out.sort((a, b) => (b.data + b.ora).localeCompare(a.data + a.ora)) };
 }
 async function trascrivi(m) {
+  if (process.platform !== 'darwin' || process.arch !== 'arm64') { m.stato = 'errore'; m.errore = 'la trascrizione sul computer funziona solo su un Mac con chip Apple'; return salvaMeta(m); }
   const uvx = await BIN('uvx'); if (!uvx) { m.stato = 'errore'; m.errore = 'uvx non trovato'; return salvaMeta(m); }
   inCorso.add(m.id); m.stato = 'in corso'; delete m.errore; await salvaMeta(m);
   const tmp = path.join(DIR_AUDIO, '.tmp-' + m.id.replace(/\W+/g, '-')); const file = path.join(DIR_AUDIO, m.file);
@@ -838,7 +853,7 @@ const rotte = {
   'POST /api/corso/segnalibro': segnaCorso,
   'GET /api/richieste': richieste,
   'POST /api/richieste': async b => { const t = String(b.testo || '').trim().slice(0, 1500); if (!t) throw new Error('scrivi la richiesta'); await chiediAClaude('richiesta dell\'utente', t); return richieste(); },
-  'GET /api/impostazioni': async () => { const ics = await icsTesti(); const cj = await leggiJson('calendario.json'), so = await leggiJson('soldi.json'), pr = await leggiJson('progetti.json'); return { vault: VAULT, obiettivoSoldi: Number(CONFIG.obiettivoSoldi) || 0, ical: { indirizzi: ics.indirizzi, letti: ics.testi.length }, calendario: cj.aggiornato || null, calendari: cj.calendari || [], soldi: so.aggiornato || null, foglio: so.foglio || null, progetti: pr.aggiornato || null, fathom: await fathom().then(f => ({ collegato: f.collegato, errore: f.errore || null, quante: f.registrazioni.length, fonte: f.fonte || 'chiave', aggiornato: f.aggiornato || null })), github: !!(await BIN('gh')), trascrizione: !!(await BIN('uvx')) && !!(await BIN('ffmpeg')) }; },
+  'GET /api/impostazioni': async () => { const ics = await icsTesti(); const cj = await leggiJson('calendario.json'), so = await leggiJson('soldi.json'), pr = await leggiJson('progetti.json'); return { vault: VAULT, obiettivoSoldi: Number(CONFIG.obiettivoSoldi) || 0, ical: { indirizzi: ics.indirizzi, letti: ics.testi.length }, calendario: cj.aggiornato || null, calendari: cj.calendari || [], soldi: so.aggiornato || null, foglio: so.foglio || null, progetti: pr.aggiornato || null, fathom: await fathom().then(f => ({ collegato: f.collegato, errore: f.errore || null, quante: f.registrazioni.length, fonte: f.fonte || 'chiave', aggiornato: f.aggiornato || null })), github: !!(await BIN('gh')), trascrizione: process.platform === 'darwin' && process.arch === 'arm64' && !!(await BIN('uvx')) && !!(await BIN('ffmpeg')) }; },
   'GET /api/lavoro': lavoro,
   // Soldi di un cliente, corretti dalla pagina: si toccano solo firmato, ricorrente e l'incasso del mese in corso.
   'POST /api/contesti/soldi': async b => {

@@ -857,7 +857,7 @@ async function impostazioni() {
       ${t('github', 'GitHub', !!i.github, i.github ? 'Repository e push letti in diretta dal Mac.' : 'GitHub non trovato sul Mac.')}
       ${t('vercel', 'Vercel', !!i.progetti, i.progetti ? `Siti online, letti da Claude il ${dataBreve(i.progetti)}.` : 'Non ancora letto.')}
       ${t('supabase', 'Supabase', !!i.progetti, i.progetti ? `Database, letti da Claude il ${dataBreve(i.progetti)}.` : 'Non ancora letto.')}
-      ${t('openai', 'Whisper', i.trascrizione, i.trascrizione ? 'Trascrive i vocali sul Mac (modello Whisper di OpenAI, versione mlx). Nessun audio esce dal computer.' : 'Mancano uvx o ffmpeg sul Mac.')}
+      ${t('openai', 'Whisper', i.trascrizione, i.trascrizione ? 'Trascrive i vocali sul Mac (modello Whisper di OpenAI, versione mlx). Nessun audio esce dal computer.' : 'Serve un Mac con chip Apple, con uv e ffmpeg installati.')}
     </div>
     <p class="piccolo nota-pagina">Calendario, soldi, Vercel e Supabase li rilegge Claude a ogni giro del pianificatore, ogni due ore a Mac acceso e app Claude aperta.</p>`);
 }
