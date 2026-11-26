@@ -6,11 +6,15 @@ Piattaforma locale (Node, nessuna dipendenza) sopra un Second Brain in Obsidian.
 
 Questa cartella viene dalla repo **originale** (`github.com/matteodaniel-mezin/bussola-open`). L'originale resta com'è: ogni modifica (tema, configurazione, pagine, codice nuovo) vive nella **copia** dell'utente. Prima di cambiare qualsiasi file:
 
+0. La copia passa sempre da **git**: è così che arrivano le novità e che il branch funziona.
+   - `git --version` non risponde: con l'ok dell'utente installalo. Mac: `xcode-select --install` (si apre una finestra di Apple: l'utente preme "Installa"). Windows: `winget install --id Git.Git -e`. Linux: il gestore di pacchetti. Aspetta che sia installato prima di andare avanti.
+   - La cartella non ha `.git` (scaricata come ZIP o file per file): trasformala in una copia git senza toccare i file, con `git init`, `git remote add originale https://github.com/matteodaniel-mezin/bussola-open.git`, `git fetch originale`, `git reset originale/main` (sposta solo git, i file restano com'erano), `git switch -c mia-bussola`. Quello che l'utente aveva già cambiato compare in `git status`: salvalo con un commit. `config.local.json`, `PERSONALIZZAZIONE.md` e i dati sono in `.gitignore` e restano intatti.
+   - Se devi ancora scaricare la repo, usa sempre `git clone https://github.com/matteodaniel-mezin/bussola-open.git`, mai lo ZIP.
 1. Se il remote `origin` punta alla repo originale, rinominalo `originale` (`git remote rename origin originale`) e lavora sul branch `mia-bussola` (`git switch -c mia-bussola`).
 2. Fai i commit solo su `mia-bussola`. Per salvarla online, con l'ok dell'utente crea una repo **privata** sul suo account GitHub e aggiungila come `origin`.
 3. Verso `originale` niente push e niente pull request. Le novità dell'originale si prendono con `git fetch originale` e `git merge originale/main`, solo se l'utente lo chiede.
 
-Fatto quando `git remote -v` non ha più `origin` sulla repo originale e `git branch --show-current` dice `mia-bussola`.
+Fatto quando c'è `.git`, `git remote -v` non ha più `origin` sulla repo originale e `git branch --show-current` dice `mia-bussola`.
 
 Unica eccezione: il proprietario dell'originale (`gh api user --jq .login` risponde `matteodaniel-mezin`) lavora su `main` dell'originale.
 
