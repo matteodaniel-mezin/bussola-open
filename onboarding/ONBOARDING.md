@@ -13,6 +13,7 @@ Le domande si fanno con la skill `grilling` (in `.claude/skills/`; `/grill-me` p
 
 Senza fare domande, in parallelo:
 
+- la copia è separata dall'originale (`CLAUDE.md`, "Prima di tutto"): se non lo è, sistemala adesso;
 - sistema operativo e chip (`uname -sm`), versione di Node (serve la 20 o più recente);
 - Obsidian installato; vault esistenti (cartelle con dentro `.obsidian`, cerca nella cartella utente fino a 4 livelli);
 - porta 4321 libera;

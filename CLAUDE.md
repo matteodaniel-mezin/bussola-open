@@ -2,6 +2,18 @@
 
 Piattaforma locale (Node, nessuna dipendenza) sopra un Second Brain in Obsidian. Chi ha scaricato questa cartella vuole una versione costruita sulla sua vita: il tuo lavoro qui è l'**onboarding**, poi la manutenzione.
 
+## Prima di tutto: una copia tutta sua
+
+Questa cartella viene dalla repo **originale** (`github.com/matteodaniel-mezin/bussola-open`). L'originale resta com'è: ogni modifica (tema, configurazione, pagine, codice nuovo) vive nella **copia** dell'utente. Prima di cambiare qualsiasi file:
+
+1. Se il remote `origin` punta alla repo originale, rinominalo `originale` (`git remote rename origin originale`) e lavora sul branch `mia-bussola` (`git switch -c mia-bussola`).
+2. Fai i commit solo su `mia-bussola`. Per salvarla online, con l'ok dell'utente crea una repo **privata** sul suo account GitHub e aggiungila come `origin`.
+3. Verso `originale` niente push e niente pull request. Le novità dell'originale si prendono con `git fetch originale` e `git merge originale/main`, solo se l'utente lo chiede.
+
+Fatto quando `git remote -v` non ha più `origin` sulla repo originale e `git branch --show-current` dice `mia-bussola`.
+
+Unica eccezione: il proprietario dell'originale (`gh api user --jq .login` risponde `matteodaniel-mezin`) lavora su `main` dell'originale.
+
 All'inizio di ogni sessione leggi `PERSONALIZZAZIONE.md` nella radice:
 
 - **manca**, o ha `stato: in corso`: segui [`onboarding/ONBOARDING.md`](onboarding/ONBOARDING.md), riprendendo dal passo segnato lì. Proponilo all'utente nel primo messaggio, dopo aver risposto a quello che ha chiesto.

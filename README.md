@@ -21,6 +21,10 @@ node server.mjs
 
 Apri `http://localhost:4321`. Senza configurazione Bussola crea e usa un vault di esempio (`vault-esempio/`), con persone, clienti e numeri inventati. Per rifarlo da capo: `node strumenti/crea-esempio.mjs --forza`.
 
+## La tua copia
+
+Questa repo resta com'è. Quando la usi, Claude rinomina il collegamento a questa repo in `originale` e lavora sul branch `mia-bussola`: le tue modifiche restano tue e, se vuoi salvarle online, vanno in una repo privata sul tuo account. Le novità di qui le prendi solo quando lo chiedi.
+
 ## Usalo con il tuo vault
 
 ```bash
