@@ -67,7 +67,7 @@ Colori e caratteri stanno tutti in `public/tema.css`: puoi cambiarli anche a man
 | `widget/main.swift` | Finestrella sulla scrivania con i da fare di oggi (facoltativo, solo Mac) |
 | `CLAUDE.md` | Istruzioni per Claude, lette a ogni sessione |
 | `onboarding/` | I passi dell'onboarding, le domande per ramo, il riferimento per colori e caratteri |
-| `.claude/skills/` | Le skill grill-me e grilling, per le domande dell'onboarding |
+| `.claude/skills/` | Le skill grill-me e grilling, per le domande dell'onboarding, e design-bussola, il manuale di design |
 | `public/tema.css` | Colori e caratteri |
 | `modelli/` | `CLAUDE.md` del vault, istruzioni delle tre attività programmate, avvio automatico su Mac |
 

@@ -33,7 +33,7 @@ Righe in più per chat:
 
 - **Come sto andando**: "Quando `Piano/Riallineamento.md` ha `stato: aperto`, fammi le domande una alla volta con la tua risposta consigliata (skill `grilling` se c'è). Con le mie risposte aggiorna Obiettivi, Bussola, Roadmap e, se è cambiata la mia vita, Vita.md; scrivi le risposte sotto `## Risposte`, metti `stato: fatto` e una nota nel Diario. Poi fai la **modulazione** descritta nel CLAUDE.md di Bussola."
 - **Lavoro**: "Per un cliente o progetto con una cartella di lavoro, proponi di aprire una chat dedicata in quella cartella. Quelle chat lasciano le note di fine lavoro in `Inbox`."
-- **Design**: "Lavori nella cartella di Bussola. Ogni cambio di aspetto va in `public/tema.css` o `config.local.json`; ogni scelta nuova va nel profilo, sezione `## Aspetto`."
+- **Design**: "Lavori nella cartella di Bussola e segui la skill design-bussola: colori e caratteri liberi, struttura e componenti di Bussola salvo mia richiesta esplicita. Ogni cambio di aspetto va in `public/tema.css` o `config.local.json`; ogni scelta nuova va nel profilo, sezione `## Aspetto`."
 
 ## Fatto quando
 

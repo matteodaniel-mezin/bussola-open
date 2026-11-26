@@ -1,5 +1,7 @@
 # Aspetto: riferimento
 
+Il binario è la skill **design-bussola**: qui si scelgono colori, caratteri e nome; struttura, cartoncini e posizioni restano quelli del manuale, salvo che l'utente chieda esplicitamente altro.
+
 ## Dove si cambia
 
 | Cosa | Dove |
