@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light">
+  <link rel="icon" href="/icona.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icona-180.png">
+  <title>Bussola · oggi</title>
+  <style>
+    @font-face { font-family: "Inter"; src: url(/fonts/inter.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Gelasio"; src: url(/fonts/gelasio.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+    :root { color-scheme: light; --fondo: #f6f4f0; --carta: #fff; --testo: #1f1d1a; --tenue: #7a746a; --lieve: #9a9388; --spento: #cfc8bb; --bordo: #e8e4dc; --sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; --serif: "Gelasio", Georgia, "Iowan Old Style", serif; }
+    * { box-sizing: border-box; } html, body { margin: 0; height: 100%; background: transparent; }
+    body { font: 13.5px/1.35 var(--sans); color: var(--testo); -webkit-font-smoothing: antialiased; user-select: none; cursor: default; overflow: hidden; }
+    .scheda { position: absolute; inset: 6px; border-radius: 16px; padding: 16px 14px 10px; background: var(--fondo); box-shadow: 0 6px 22px rgba(40,30,10,.18), 0 0 0 .5px rgba(40,30,10,.12); overflow: hidden; display: flex; flex-direction: column; }
+    a.apri { position: absolute; inset: 0; z-index: 1; border-radius: 16px; }
+    h1 { font: 400 21px/1.2 var(--serif); margin: 0 4px; }
+    .sotto { color: var(--tenue); font-size: 12.5px; margin: 3px 4px 10px; }
+    .prossimo { display: none; align-items: center; gap: 8px; margin: 0 0 8px; padding: 7px 10px; border-radius: 8px; background: #eaf5ea; border-left: 3px solid #3da548; font-size: 12.5px; position: relative; z-index: 2; } .prossimo.c { display: flex; }
+    .prossimo b { font-weight: 500; font-variant-numeric: tabular-nums; } .prossimo span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+    ul { list-style: none; margin: 0; padding: 0; flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 5px; }
+    ul::-webkit-scrollbar { display: none; }
+    li { flex: none; display: flex; align-items: center; gap: 2px; background: var(--carta); border-radius: 9px; box-shadow: 0 1px 2px rgba(60,50,30,.08); padding: 0 10px 0 2px; min-height: 34px; }
+    li.fatta .t { color: var(--lieve); } li.vuoto { background: none; box-shadow: none; color: var(--lieve); padding: 0 4px; }
+    li button { all: unset; cursor: pointer; width: 32px; height: 34px; display: grid; place-items: center; flex: none; }
+    li button i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--spento); display: grid; place-items: center; }
+    li.fatta button i { background: var(--testo); border-color: var(--testo); } li.fatta button i::after { content: ""; width: 4px; height: 7px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: translateY(-1px) rotate(45deg); }
+    li.gruppo { display: block; background: none; box-shadow: none; min-height: 0; padding: 8px 4px 0; font-size: 12px; font-weight: 600; color: var(--tenue); }
+    li.fatte-t button { all: unset; cursor: pointer; width: auto; height: auto; color: var(--tenue); font-weight: 500; } li.fatte-t button:hover { color: var(--testo); }
+    li .t b { display: block; font-weight: 600; } li .t .d { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 12.5px; color: var(--tenue); margin-top: 1px; } li.fatta .t .d { display: none; }
+    li.dentro .t { color: var(--testo); }
+    li button:focus-visible i { outline: 2px solid var(--testo); outline-offset: 2px; }
+    li .t { flex: 1; min-width: 0; overflow-wrap: break-word; padding: 8px 0; line-height: 1.3; } li.fatta .t { text-decoration: line-through; text-decoration-color: var(--lieve); }
+    .p { width: 6px; height: 6px; border-radius: 50%; flex: none; } .p.lavoro { background: #2f7fd1; } .p.gioco { background: #e0a800; } .p.amore { background: #d9534f; } .p.salute { background: #3da548; }
+    li small { font-size: 11.5px; color: var(--tenue); white-space: nowrap; margin-right: 6px; }
+    li .via { width: 22px; color: var(--lieve); opacity: 0; font-size: 15px; text-align: center; } li:hover .via, li .via:focus-visible { opacity: 1; }
+    form { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; color: var(--lieve); margin-top: 7px; padding: 0 10px; border-radius: 9px; }
+    form:focus-within { background: var(--carta); box-shadow: 0 1px 2px rgba(60,50,30,.08); }
+    form input { all: unset; flex: 1; min-width: 0; font: inherit; color: var(--testo); padding: 7px 0; cursor: text; user-select: text; } form input::placeholder { color: var(--lieve); }
+    .piede { display: flex; align-items: center; justify-content: flex-end; gap: 6px; color: var(--tenue); font-size: 11.5px; min-height: 6px; margin: 4px 4px 0; } .piede i { width: 6px; height: 6px; border-radius: 50%; background: #3da548; } .piede.devia i { background: #b4532a; } .piede:empty { display: none; }
+    /* Stato in fondo: la rotta, come nella barra di Bussola */
+    .piede { justify-content: flex-start; gap: 12px; margin: 8px 4px 0; padding: 8px 10px; border-radius: 9px; background: var(--carta); box-shadow: 0 1px 2px rgba(60,50,30,.08); color: var(--testo); font-size: 12.5px; } .piede:empty { display: none; }
+    .piede b { font-weight: 500; white-space: nowrap; } .piede .rotta { position: relative; flex: 1; height: 12px; min-width: 60px; }
+    .piede .rotta i { position: absolute; border-radius: 0; background: none; width: auto; height: auto; }
+    .piede .rotta .riga { left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -.75px; background: var(--bordo); }
+    .piede .rotta .t { top: 50%; width: 1.5px; height: 5px; margin: -2.5px 0 0 -.75px; background: var(--spento); } .piede .rotta .t:nth-of-type(6) { height: 10px; margin-top: -5px; background: var(--lieve); }
+    .piede .rotta .segno { top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: #3da548; box-shadow: 0 0 0 3px rgba(61,165,72,.16); }
+    .piede.devia .rotta .segno { background: #b4532a; box-shadow: 0 0 0 3px rgba(180,83,42,.16); } .piede.devia b { color: #b4532a; }
+  </style>
+  <link rel="stylesheet" href="/tema.css">
+</head>
+<body>
+  <div class="scheda"><a class="apri" href="http://localhost:4321/#oggi" target="_blank" aria-label="Apri Bussola"></a>
+    <h1 id="titolo">Oggi</h1><div class="sotto" id="sotto"></div><div class="prossimo" id="prossimo"></div><ul id="lista"></ul>
+    <form id="nuovo"><span aria-hidden="true">+</span><input name="testo" placeholder="Aggiungi" aria-label="Aggiungi una cosa da fare" autocomplete="off" maxlength="200"></form><div class="piede" id="seg"></div></div>
+  <script type="module">
+    let fatteAperte = false; try { fatteAperte = localStorage.getItem('bussola-fatte') === '1'; } catch {}
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const $ = id => document.getElementById(id); let S = null;
+    function disegna() {
+      $('titolo').textContent = S.titolo.charAt(0).toUpperCase() + S.titolo.slice(1);
+      if (S.primaVolta) { $('prossimo').className = 'prossimo'; $('sotto').textContent = ''; $('lista').innerHTML = '<li class="vuoto">Clicca per fare il primo allineamento.</li>'; return; }
+      const todo = S.oggi.todo, resta = todo.filter(t => !t.fatto).length;
+      $('sotto').textContent = !todo.length ? 'Lista vuota' : resta === 0 ? 'Tutto fatto' : resta === 1 ? 'Ti resta una cosa' : `Ti restano ${resta} cose`;
+      // Passi con lo stesso inizio ("Ricerca 1 di 4: …"): il nome una volta, con le ore, e sotto i passi.
+      // Le fatte restano chiuse: si aprono con "mostra", come nella pagina Oggi.
+      const PREF = /^([^:]{3,40}):\s+(.+)$/, minuti = v => { const m = /^(\d{1,2}):(\d{2})/.exec(v.tempo || ''); return m ? +m[1] * 60 + +m[2] : 9999; },
+        aperte = todo.map((v, i) => ({ ...v, i })).filter(v => !v.fatto).sort((x, y) => minuti(x) - minuti(y) || x.i - y.i), conta = new Map();   // in ordine di ora, quelle senza ora in fondo
+      for (const v of aperte) { const m = PREF.exec(v.testo); if (m) conta.set(m[1], (conta.get(m[1]) || 0) + 1); }
+      const chiave = v => { const m = PREF.exec(v.testo); return m && conta.get(m[1]) > 1 ? m[1] : null; };
+      const ordine = []; for (const v of aperte) { const k = chiave(v); if (!k) ordine.push(v); else if (!ordine.some(x => x.k === k)) ordine.push({ k, voci: aperte.filter(y => chiave(y) === k) }); }
+      // Una card lunga diventa un titolo corto e una riga grigia: la prima frase dopo i due punti. Il testo intero resta al passaggio del mouse.
+      const corpo = (testo, fatto, dentro) => {
+        const m = dentro ? null : PREF.exec(testo), nome = m ? m[1] : null, resto = m ? m[2] : testo;
+        const frase = resto.split(/\.\s+(?=[A-ZÀ-Ú"«])/)[0].replace(/\.$/, '');
+        const d = frase.charAt(0).toUpperCase() + frase.slice(1);
+        if (dentro && !fatto) { const k = /^(.{12,80}?)(?:;\s+|:\s+)(.+)$/.exec(testo); if (k) return `<span class="t" title="${esc(testo)}">${esc(k[1])}<span class="d">${esc(k[2].charAt(0).toUpperCase() + k[2].slice(1))}</span></span>`; }
+        if (!nome) return `<span class="t" title="${esc(testo)}">${esc(fatto || dentro || testo.length < 70 ? testo : d)}</span>`;
+        return `<span class="t" title="${esc(testo)}"><b>${esc(nome)}</b><span class="d">${esc(d)}</span></span>`;
+      };
+      const voce = (v, testo, dentro) => `<li class="${v.fatto ? 'fatta' : ''} ${dentro ? 'dentro' : ''}"><button data-az="spunta" data-i="${v.i}" aria-pressed="${v.fatto}" aria-label="${esc(v.testo)}"><i></i></button>${corpo(testo, v.fatto, dentro)}${v.tempo && !v.fatto ? `<small>${esc(v.tempo.split(' · ')[0])}</small>` : ''}${v.area ? `<i class="p ${esc(v.area)}"></i>` : ''}<button class="via" data-az="togli" data-i="${v.i}" aria-label="Togli: ${esc(v.testo)}">×</button></li>`;
+      const passo = v => { const s = PREF.exec(v.testo)[2]; return s.charAt(0).toUpperCase() + s.slice(1); };
+      $('lista').innerHTML = ordine.map(x => x.k ? `<li class="gruppo">${esc(x.k)}</li>` + x.voci.map(v => voce(v, passo(v), true)).join('') : voce(x, x.testo)).join('')
+        + (() => { const fatte = todo.map((v, i) => ({ ...v, i })).filter(v => v.fatto); if (!fatte.length) return '';
+            return `<li class="gruppo fatte-t"><button data-az="fatte" aria-expanded="${fatteAperte}">Fatte ${fatte.length} · ${fatteAperte ? 'nascondi' : 'mostra'}</button></li>` + (fatteAperte ? fatte.map(v => voce(v, v.testo)).join('') : ''); })()
+        || '<li class="vuoto">Scrivi qui sotto la prima cosa.</li>';
+      const st = S.segnale?.stato; $('seg').className = 'piede' + (st === 'devia' ? ' devia' : ''); $('seg').innerHTML = !st ? '' : `<b>${st === 'devia' ? 'Stai deviando' : 'In linea'}</b><span class="rotta"><i class="riga"></i>${[0, 1, 2, 3, 4, 5, 6, 7, 8].map(k => `<i class="t" style="left:${k * 12.5}%"></i>`).join('')}<i class="segno" style="left:${st === 'devia' ? 78 : 50}%"></i></span>`; // la rotta, come nella barra di Bussola
+      // il prossimo impegno di oggi dal calendario, se ce n'è ancora uno
+      const ora = new Date(), adesso = ora.getHours() * 60 + ora.getMinutes(); const min = e => { const [h, m] = e.ora.split(':').map(Number); return h * 60 + m; };
+      const pr = (S.agenda?.eventi || []).filter(e => e.ora && min(e) >= adesso - 10)[0];
+      $('prossimo').className = 'prossimo' + (pr ? ' c' : ''); $('prossimo').innerHTML = pr ? `<b>${esc(pr.ora)}</b><span>${esc(pr.titolo)}</span>` : '';
+    }
+    async function carica() { try { S = await (await fetch('/api/stato')).json(); disegna(); } catch { $('sotto').textContent = 'Bussola è spenta'; } }
+    const manda = async (percorso, corpo) => { const r = await fetch(percorso, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(corpo) }); if (r.ok) { S.oggi = await r.json(); disegna(); } return r.ok; };
+    $('lista').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; e.preventDefault(); if (b.dataset.az === 'fatte') { fatteAperte = !fatteAperte; try { localStorage.setItem('bussola-fatte', fatteAperte ? '1' : '0'); } catch {} disegna(); return; } manda(b.dataset.az === 'togli' ? '/api/todo/togli' : '/api/todo/spunta', { i: +b.dataset.i }); });
+    $('nuovo').addEventListener('submit', async e => { e.preventDefault(); const campo = e.target.testo, testo = campo.value.trim(); if (!testo || S?.primaVolta) return; if (await manda('/api/todo/aggiungi', { testo })) campo.value = ''; });
+    let versione = null; async function nuovo() { try { const s = await (await fetch('/api/segno')).json(); if (versione && s.versione !== versione && !document.activeElement?.matches('input')) location.reload(); versione = s.versione; } catch {} }
+    carica(); nuovo(); setInterval(() => { carica(); nuovo(); }, 30000); addEventListener('focus', carica); document.addEventListener('visibilitychange', () => { if (!document.hidden) carica(); });
+  </script>
+</body>
+</html>

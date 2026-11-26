@@ -1,0 +1,21 @@
+# Configurazione personale: percorso del vault, indirizzi del calendario, chiavi
+config.local.json
+PERSONALIZZAZIONE.md
+GUIDA-PERSONALE.md
+.env
+.env.*
+
+# Dati personali generati mentre usi Bussola
+dati/
+audio/
+logs/
+
+# Esempio: si crea da solo con strumenti/crea-esempio.mjs
+vault-esempio/
+dati-esempio/
+
+# Programmi compilati sul tuo Mac
+strumenti/vettori
+widget/Bussola Widget.app/
+
+.DS_Store

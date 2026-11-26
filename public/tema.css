@@ -1,0 +1,39 @@
+/* Tema di Bussola: colori e caratteri. Si carica dopo app.css e vince su di esso.
+   Lo personalizza Claude durante l'onboarding (vedi CLAUDE.md), oppure lo cambi tu a mano.
+   I valori qui sotto sono quelli di partenza: cambiane uno e ricarica la pagina.
+
+   Caratteri: per uno di Google Fonts aggiungi in cima una riga come
+     @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&display=swap");
+   (così il carattere si scarica da internet). Per uno sul computer: metti il file .woff2 in public/fonts/
+   e aggiungi un @font-face come quelli in cima ad app.css. */
+
+:root {
+  /* fondi e superfici */
+  --fondo: #f6f4f0;    /* sfondo della pagina */
+  --lato: #efece6;     /* barra a sinistra */
+  --carta: #ffffff;    /* cartoncini */
+  --bordo: #e8e4dc;
+  --riga: #f0ece5;
+
+  /* testo, dal più scuro al più chiaro */
+  --testo: #1f1d1a;
+  --testo2: #4a463f;
+  --tenue: #7a746a;
+  --lieve: #9a9388;
+  --spento: #cfc8bb;
+
+  /* le quattro aree, e gli impegni del calendario */
+  --lavoro: #2f7fd1;
+  --gioco: #e0a800;
+  --amore: #d9534f;
+  --salute: #3da548;   /* anche il verde di "in linea" e dei pulsanti positivi */
+  --evento: #1e9fd8;
+  --attento: #b4532a;  /* avvisi */
+
+  /* caratteri: titoli e testo */
+  --serif: "Gelasio", Georgia, "Iowan Old Style", "New York", ui-serif, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+
+  /* ombra dei cartoncini */
+  --ombra: 0 1px 2px rgba(60, 50, 30, .08);
+}
