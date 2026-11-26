@@ -5,6 +5,7 @@ Ogni ramo ha la domanda da cui partire, quando aprirlo e le pagine o i servizi c
 | Ramo | Domanda di partenza | Aprilo se | Decide |
 |---|---|---|---|
 | Ritmo | Com'è una tua settimana tipo: quando lavori, quando no? | sempre | proposte del pianificatore, `CLAUDE.md` del vault |
+| Strumenti | Quali strumenti usi per il tuo lavoro e la tua giornata? Per scrivere, parlare con clienti e colleghi, fare call, tenere i conti, progettare, pubblicare | sempre, subito dopo Ritmo | strumenti da collegare, tessere di Impostazioni, cosa portano nel vault |
 | Giornata | Oggi come tieni le cose da fare? Cosa non funziona? | sempre | Oggi, Liste, abitudini, proposte di Claude |
 | Calendario | Usi un calendario? Quale? | sempre | Calendario, agenda di Oggi, iCal o connettore |
 | Sera | Ti va di chiudere la giornata con un voto? Meglio a voce o scritto? | sempre | Vocale della sera, Giornate, voto automatico |

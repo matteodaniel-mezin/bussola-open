@@ -9,5 +9,19 @@
   "githubUtente": "",
   "calendari": [],
   "fathomApiKey": "",
-  "corsiPdf": {}
+  "corsiPdf": {},
+  "strumenti": [
+    {
+      "id": "gcal",
+      "cosa": "Lezioni e call con i clienti"
+    },
+    {
+      "id": "notion",
+      "nome": "Notion",
+      "logo": "/loghi/notion.svg",
+      "cosa": "Appunti dei progetti",
+      "come": "Connettore di Claude",
+      "collegato": true
+    }
+  ]
 }

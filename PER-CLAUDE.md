@@ -429,6 +429,7 @@ Poi in `config.local.json`:
 |---|---|
 | `nome` | il nome con cui salutare l'utente in Oggi |
 | `titolo` | il nome della piattaforma, in cima alla barra (di solito Bussola) |
+| `strumenti` | gli strumenti della persona, mostrati in Impostazioni: `{ id, nome, logo, cosa, come, collegato }` (vedi `onboarding/strumenti.md`). Senza, le tessere di serie |
 | `nascondi` | pagine da togliere dalla barra, es. `["soldi", "progetti"]` |
 | `vault` | il percorso del vault; `~` vale la cartella utente |
 | `dati` | dove tenere i JSON (di solito `dati`) |

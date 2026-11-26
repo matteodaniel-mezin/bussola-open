@@ -73,9 +73,10 @@ Solo quello che il profilo chiede, in quest'ordine (dal più utile al facoltativ
    - `modelli/giro-orario.md`, ogni ora: smista Inbox, aggiorna Contesti, Diario e Lezioni;
    - `modelli/riallineamento.md`, la domenica sera e l'ultimo giorno del mese: prepara le domande per riallineare obiettivi e visione, che compaiono in Oggi.
    Se non le vuole, scrivi nel profilo che il vault si aggiorna solo quando apre una chat, e chi fa il riallineamento (la chat Come sto andando, quando la apre).
-5. **Da costruire**: per ogni bisogno nuovo proponi come lo faresti in tre righe e, con il suo sì, costruiscilo nello stile del codice (nessuna dipendenza, dati in Markdown nel vault, formato documentato in `PER-CLAUDE.md`).
-6. **Le chat per macrocategoria**: una chat di Claude per ogni gruppo di pagine tenuto (Generale, La mia giornata, Come sto andando, Lavoro, Design), tutte sul vault. Segui [`chat.md`](chat.md).
-7. **Collegamento con le chat degli altri progetti** (`PER-CLAUDE.md`, Passo 8): consiglialo, così anche il lavoro fatto altrove arriva nel Second Brain.
+5. **Strumenti**: per ogni strumento del ramo Strumenti (`bisogni.md`) segui [`strumenti.md`](strumenti.md): collegalo, decidi con l'utente cosa porta nel vault, scarica la sua icona e aggiungilo a `strumenti` in `config.local.json`. Impostazioni mostra solo i suoi.
+6. **Da costruire**: per ogni bisogno nuovo proponi come lo faresti in tre righe e, con il suo sì, costruiscilo nello stile del codice (nessuna dipendenza, dati in Markdown nel vault, formato documentato in `PER-CLAUDE.md`).
+7. **Le chat per macrocategoria**: una chat di Claude per ogni gruppo di pagine tenuto (Generale, La mia giornata, Come sto andando, Lavoro, Design), tutte sul vault. Segui [`chat.md`](chat.md).
+8. **Collegamento con le chat degli altri progetti** (`PER-CLAUDE.md`, Passo 8): consiglialo, così anche il lavoro fatto altrove arriva nel Second Brain.
 
 Riavvia il server sul vault vero. Fatto quando: ogni pagina tenuta si apre senza errori nella console, e un da fare aggiunto in Oggi compare nel file del giorno in Obsidian.
 

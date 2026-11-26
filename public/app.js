@@ -849,18 +849,31 @@ async function impostazioni() {
   const t = (logo, nome, ok, testo) => `<button class="carta imp-t ${ok ? '' : 'spento'} ${(V.impSu || []).includes(logo) ? 'su' : ''}" data-az="imp-t" data-k="${logo}" title="${esc(testo)}" aria-expanded="${(V.impSu || []).includes(logo)}"><span class="imp-logo">${LOGHI[logo]}</span><b>${nome}</b>${pillola(ok ? 'Collegato' : 'Da collegare', ok ? 'verde' : 'grigia')}${ok ? '' : `<p class="piccolo">${esc(testo)}</p>`}<span class="imp-cosa"><b>${nome}</b><span>${esc(COSA[logo] || testo)}</span></span></button>`;
   const cal = i.ical.letti > 0 ? 'Il tuo calendario è letto in diretta, ogni minuto. Gli altri calendari li legge Claude ogni due ore.' : i.calendario ? `Dal tuo account Google, tramite Claude. Ultima lettura: ${i.calendario}. Calendari: ${i.calendari.join(', ')}.` : 'Nessun calendario letto.';
   const fat = i.fathom.collegato ? (i.fathom.fonte === 'connettore' ? `${i.fathom.quante} registrazioni, lette da Claude dal tuo account Fathom. Ultima lettura: ${i.fathom.aggiornato}.` : `${i.fathom.quante} registrazioni negli ultimi tre mesi. Riletto ogni 10 minuti, in sola lettura.`) : (i.fathom.errore || 'Manca la chiave. In Fathom: Settings, poi API Access, poi Generate API key. Incollala in config.local.json alla voce "fathomApiKey", tra le virgolette.');
-  pagina('impostazioni', `${testa('Impostazioni', 'Da dove arrivano i dati. Clicca un logo per sapere cosa fa.')}
-    <div class="imp-g">
-      ${t('obsidian', 'Obsidian', true, `Il taccuino: ${i.vault}`)}
-      ${t('gcal', 'Google Calendar', i.ical.letti > 0 || !!i.calendario, cal)}
-      ${t('gsheets', 'Google Sheets', !!i.soldi, i.soldi ? `Il foglio dei soldi, letto da Claude il ${dataBreve(i.soldi)}.` : 'Foglio non ancora letto.')}
-      ${t('fathom', 'Fathom', i.fathom.collegato, fat)}
-      ${t('github', 'GitHub', !!i.github, i.github ? 'Repository e push letti in diretta dal Mac.' : 'GitHub non trovato sul Mac.')}
-      ${t('vercel', 'Vercel', !!i.progetti, i.progetti ? `Siti online, letti da Claude il ${dataBreve(i.progetti)}.` : 'Non ancora letto.')}
-      ${t('supabase', 'Supabase', !!i.progetti, i.progetti ? `Database, letti da Claude il ${dataBreve(i.progetti)}.` : 'Non ancora letto.')}
-      ${t('openai', 'Whisper', i.trascrizione, i.trascrizione ? 'Trascrive i vocali sul Mac (modello Whisper di OpenAI, versione mlx). Nessun audio esce dal computer.' : 'Serve un Mac con chip Apple, con uv e ffmpeg installati.')}
-    </div>
-    <p class="piccolo nota-pagina">Calendario, soldi, Vercel e Supabase li rilegge Claude a ogni giro del pianificatore, ogni due ore a Mac acceso e app Claude aperta.</p>`);
+  // Tessere di serie, con lo stato letto dal server.
+  const SERIE = {
+    obsidian: ['Obsidian', true, `Il taccuino: ${i.vault}`],
+    gcal: ['Google Calendar', i.ical.letti > 0 || !!i.calendario, cal],
+    gsheets: ['Google Sheets', !!i.soldi, i.soldi ? `Il foglio dei soldi, letto da Claude il ${dataBreve(i.soldi)}.` : 'Foglio non ancora letto.'],
+    fathom: ['Fathom', i.fathom.collegato, fat],
+    github: ['GitHub', !!i.github, i.github ? 'Repository e push letti in diretta dal computer.' : 'GitHub non trovato sul computer.'],
+    vercel: ['Vercel', !!i.progetti, i.progetti ? `Siti online, letti da Claude il ${dataBreve(i.progetti)}.` : 'Non ancora letto.'],
+    supabase: ['Supabase', !!i.progetti, i.progetti ? `Database, letti da Claude il ${dataBreve(i.progetti)}.` : 'Non ancora letto.'],
+    openai: ['Whisper', i.trascrizione, i.trascrizione ? 'Trascrive i vocali sul Mac (modello Whisper di OpenAI, versione mlx). Nessun audio esce dal computer.' : 'Serve un Mac con chip Apple, con uv e ffmpeg installati.'],
+  };
+  // Gli strumenti della persona: "strumenti" in config.local.json, scelti nell'onboarding. Senza, le tessere di serie.
+  // { "id", "nome", "logo" (file in public/loghi/), "cosa" (a cosa serve per lei), "come" (come è collegato), "collegato" }
+  const tessera = x => {
+    const id = String(x.id || x.nome || '').toLowerCase(); const base = SERIE[id];
+    if (base && !x.logo) { if (x.cosa) COSA[id] = x.cosa; return t(id, x.nome || base[0], base[1], x.come || base[2]); }
+    const logo = x.logo ? `<img src="${esc(x.logo)}" alt="">` : `<span class="imp-lettera">${esc((x.nome || '?').charAt(0).toUpperCase())}</span>`;
+    const ok = x.collegato !== false, nome = esc(x.nome || id), testo = x.come || (ok ? 'Collegato a Claude.' : 'Da collegare: chiedi a Claude.'), su = (V.impSu || []).includes(id);
+    return `<button class="carta imp-t ${ok ? '' : 'spento'} ${su ? 'su' : ''}" data-az="imp-t" data-k="${esc(id)}" title="${esc(testo)}" aria-expanded="${su}"><span class="imp-logo">${logo}</span><b>${nome}</b>${pillola(ok ? 'Collegato' : 'Da collegare', ok ? 'verde' : 'grigia')}${ok ? '' : `<p class="piccolo">${esc(testo)}</p>`}<span class="imp-cosa"><b>${nome}</b><span>${esc(x.cosa || testo)}</span></span></button>`;
+  };
+  const mie = Array.isArray(i.strumenti) && i.strumenti.length ? i.strumenti : null;
+  const elenco = mie ? (mie.some(x => String(x.id || '').toLowerCase() === 'obsidian') ? mie : [{ id: 'obsidian' }, ...mie]) : Object.keys(SERIE).map(id => ({ id }));
+  pagina('impostazioni', `${testa('Impostazioni', 'Gli strumenti collegati a Bussola. Clicca un logo per sapere cosa fa.')}
+    <div class="imp-g">${elenco.map(tessera).join('')}</div>
+    <p class="piccolo nota-pagina">${mie ? 'Gli strumenti li sceglie e li collega Claude con te. Per aggiungerne uno, chiediglielo.' : 'Calendario, soldi, Vercel e Supabase li rilegge Claude a ogni giro del pianificatore, ogni due ore a computer acceso e app Claude aperta.'}</p>`);
 }
 
 // ---------- primo accesso e controllo del mese ----------
