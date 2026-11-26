@@ -88,9 +88,23 @@ In fondo alla barra a sinistra c'è la **rotta**: "In linea" se le tue giornate 
 3. Apri **Weekend** se ti serve un'idea.
 4. Apri **Obiettivi** e guarda i micro-obiettivi della settimana che arriva.
 
-### Una volta al mese
+### Il riallineamento (la domenica e a fine mese)
 
-Quando Bussola te lo chiede, rivedi gli obiettivi: cosa è fatto, cosa cambia, cosa togli.
+Ogni domenica sera Claude prepara poche domande a partire dalla tua settimana: per esempio "hai corso due volte su tre, l'obiettivo è ancora giusto?". Le vedi in un riquadro azzurro nella pagina Oggi. Rispondi nella chat **Come sto andando**: Claude te le fa una alla volta, con il suo consiglio, poi aggiorna i tuoi obiettivi.
+
+A fine mese le domande vanno più a fondo: obiettivi del mese, quelli lunghi, la tua bussola. Se cambiano, Claude adatta anche Bussola: ti propone di nascondere pagine che non ti servono più o di aggiungere quello che ti manca.
+
+## Le chat con Claude
+
+Hai una chat di Claude per ogni parte della tua vita, tutte collegate al tuo taccuino:
+
+- **Generale**: quando non sai dove mettere una cosa.
+- **La mia giornata**: organizzare oggi, spostare impegni, raccontare com'è andata.
+- **Come sto andando**: obiettivi, abitudini, soldi, lezioni, e il riallineamento.
+- **Lavoro**: clienti, progetti, call. Da qui si aprono le chat dei singoli clienti.
+- **Design**: cambiare l'aspetto di Bussola.
+
+Quello che decidi in una chat finisce nel taccuino, e Bussola lo mostra.
 
 ## Domande frequenti
 

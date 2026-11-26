@@ -34,15 +34,18 @@ Un solo giro breve, tre domande, per decidere come condurre il resto:
 
 Fatto quando: le tre risposte sono nel profilo (`## Chi è`) con il percorso scelto. Da qui in poi parla nel suo registro e usa le sue parole per le cose: se chiama i clienti "progetti", anche tu.
 
-## Passo 3. Cosa gli serve
+## Passo 3. Visione e bisogni
 
-`grilling` sui bisogni, partendo dalla sua frase del Passo 2, non dalle pagine. I rami e le pagine che decidono sono in [`bisogni.md`](bisogni.md): apri un ramo solo se le risposte precedenti lo rendono pertinente (chi non ha clienti salta il lavoro per clienti). Nel percorso rapido chiedi solo i rami dove la tua consigliata è incerta.
+Prima la **visione**, poi i bisogni: la piattaforma prende forma dalla direzione della persona, non dal catalogo delle pagine.
+
+1. `grilling` sulla visione: dove vuole essere tra 2 anni, cosa conta nella sua vita, perché lavora, gli obiettivi a 6 mesi e del mese. Nel percorso rapido bastano visione in una frase e tre obiettivi. Fatto quando il profilo ha `## Visione` con queste risposte nelle sue parole; servono anche a riempire `Bussola.md` e `Obiettivi.md` nel Passo 5.
+2. `grilling` sui bisogni, partendo dalla visione e dalla frase del Passo 2, non dalle pagine. I rami e le pagine che decidono sono in [`bisogni.md`](bisogni.md): apri un ramo solo se le risposte precedenti lo rendono pertinente (chi non ha clienti salta il lavoro per clienti). Nel percorso rapido chiedi solo i rami dove la tua consigliata è incerta.
 
 Dopo ogni giro aggiorna `nascondi` in `config.local.json` e fagli vedere la barra che cambia.
 
 Fatto quando, nel profilo (`## Cosa gli serve`):
 
-- ogni pagina di Bussola ha un verdetto: **tieni**, **nascondi** o **da costruire**, con il perché nelle sue parole;
+- ogni pagina di Bussola ha un verdetto: **tieni**, **nascondi** o **da costruire**, con il perché nelle sue parole; ogni pagina tenuta serve ad almeno un obiettivo o alla visione, e il profilo dice a quale;
 - ci sono i tre risultati che vuole ottenere e come capirà, tra 30 giorni, se li ha ottenuti;
 - ogni bisogno che Bussola non copre è scritto con una proposta di come costruirlo.
 
@@ -61,9 +64,14 @@ Solo quello che il profilo chiede, in quest'ordine (dal più utile al facoltativ
 1. **Vault**: usa quello esistente se c'è, altrimenti crealo (`PER-CLAUDE.md`, Passi 1-3). Il `CLAUDE.md` del vault parte da `modelli/CLAUDE-vault.md` e prende ritmo, contesti e regole dal profilo; tieni solo le sezioni delle pagine che usa.
 2. **Configurazione**: `config.local.json` da `config.esempio.json` con `vault` vero. Spiegagli dove trovare indirizzi iCal e chiave di Fathom, se li vuole, e aspetta che li incolli lui.
 3. **Funzioni facoltative** scelte, installando solo i programmi che mancano (`PER-CLAUDE.md`, Passo 6).
-4. **Attività automatiche**, se le vuole: adatta `modelli/pianificatore.md` e `modelli/giro-orario.md` al profilo, togliendo le parti delle pagine nascoste e scrivendo il suo ritmo.
+4. **Attività automatiche**: sono il cuore del Second Brain, perché lo tengono aggiornato anche quando l'utente non ci pensa. Consigliale tutte e tre e attivale con il suo ok, adattate al profilo (pagine nascoste tolte, il suo ritmo scritto):
+   - `modelli/pianificatore.md`, ogni due ore: settimana, proposte, voto, segnale;
+   - `modelli/giro-orario.md`, ogni ora: smista Inbox, aggiorna Contesti, Diario e Lezioni;
+   - `modelli/riallineamento.md`, la domenica sera e l'ultimo giorno del mese: prepara le domande per riallineare obiettivi e visione, che compaiono in Oggi.
+   Se non le vuole, scrivi nel profilo che il vault si aggiorna solo quando apre una chat, e chi fa il riallineamento (la chat Come sto andando, quando la apre).
 5. **Da costruire**: per ogni bisogno nuovo proponi come lo faresti in tre righe e, con il suo sì, costruiscilo nello stile del codice (nessuna dipendenza, dati in Markdown nel vault, formato documentato in `PER-CLAUDE.md`).
-6. **Collegamento con le altre chat**, se lo vuole (`PER-CLAUDE.md`, Passo 8).
+6. **Le chat per macrocategoria**: una chat di Claude per ogni gruppo di pagine tenuto (Generale, La mia giornata, Come sto andando, Lavoro, Design), tutte sul vault. Segui [`chat.md`](chat.md).
+7. **Collegamento con le chat degli altri progetti** (`PER-CLAUDE.md`, Passo 8): consiglialo, così anche il lavoro fatto altrove arriva nel Second Brain.
 
 Riavvia il server sul vault vero. Fatto quando: ogni pagina tenuta si apre senza errori nella console, e un da fare aggiunto in Oggi compare nel file del giorno in Obsidian.
 
@@ -73,10 +81,10 @@ Rendilo pratico subito:
 
 - scrivi con lui i primi da fare di domani e, se li usa, gli obiettivi (il primo accesso di Bussola li chiede);
 - scrivi `GUIDA-PERSONALE.md`: una pagina, solo le sue pagine, il suo ritmo (mattina, sera, settimana) con i minuti che ci vogliono, nelle sue parole. `GUIDA-UTENTE.md` resta come riferimento completo;
-- proponi un controllo dopo una settimana: rileggete il profilo, cosa usa davvero, cosa togliere o aggiungere.
+- digli quando arriva il primo riallineamento (la prima domenica) e dove risponde (chat Come sto andando).
 
 ## Passo 7. Chiudi il profilo
 
-`PERSONALIZZAZIONE.md` con `stato: fatto`, data, e le sezioni `## Computer`, `## Chi è`, `## Cosa gli serve`, `## Aspetto`, `## Cosa è attivo` (servizi, funzioni, attività), `## Da fare dopo`. Massimo una pagina e mezza. È in `.gitignore`, come `GUIDA-PERSONALE.md`.
+`PERSONALIZZAZIONE.md` con `stato: fatto`, data, e le sezioni `## Computer`, `## Chi è`, `## Visione`, `## Cosa gli serve`, `## Aspetto`, `## Cosa è attivo` (servizi, funzioni, attività, chat), `## Da fare dopo`. Massimo una pagina e mezza. È in `.gitignore`, come `GUIDA-PERSONALE.md`.
 
 Fatto quando: il profilo basta da solo a una sessione nuova di Claude per lavorare su questa Bussola senza rifare domande.

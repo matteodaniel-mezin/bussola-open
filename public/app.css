@@ -443,6 +443,7 @@ details.racconto summary:focus-visible { outline: 2px solid var(--testo); outlin
 /* oggi: avviso quando il calendario cambia */
 .cambi { display: flex; align-items: flex-start; gap: 14px; padding: 12px 14px 12px 16px; margin: -8px 0 16px; border-radius: 10px; background: #fdf3ea; box-shadow: inset 3px 0 0 var(--attento); }
 .cambi > div { flex: 1; min-width: 0; display: grid; gap: 3px; font-size: 13.5px; line-height: 19px; } .cambi b { font-weight: 500; color: var(--attento); } .cambi p { color: var(--testo2); } .cambi .pill { flex: none; }
+.cambi.riall { background: #eef4fb; box-shadow: inset 3px 0 0 var(--lavoro); } .cambi.riall b { color: var(--lavoro); }
 .cambiato { font-size: 12px; color: var(--attento); }
 
 /* oggi: da fare in gruppi */

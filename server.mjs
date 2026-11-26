@@ -181,6 +181,14 @@ async function leggiSegnale() {
   const { dati, corpo } = frontmatter(t); const s = sezioni(corpo);
   return { stato: dati.stato || null, aggiornato: dati.aggiornato || null, testo: testoLibero(s['Bussola']), schemi: voci(s['Cosa hanno in comune i giorni buoni']).map(v => v.testo), correzione: testoLibero(s['Una cosa da cambiare']) };
 }
+// Riallineamento: Piano/Riallineamento.md. Le domande le prepara l'attività programmata "riallineamento" (ogni settimana e
+// ogni mese); l'utente risponde nella chat "Come sto andando", che aggiorna obiettivi e piattaforma e mette "stato: fatto".
+async function leggiRiallineamento() {
+  const t = await leggi(path.join(PIANO, 'Riallineamento.md')); if (t == null) return null;
+  const { dati, corpo } = frontmatter(t); if (String(dati.stato || '').trim() !== 'aperto') return null;
+  const domande = voci(sezioni(corpo)['Domande']).map(v => v.testo); if (!domande.length) return null;
+  return { data: dati.data || null, tipo: dati.tipo_giro || 'settimana', chat: dati.chat || 'Come sto andando', domande };
+}
 // Una richiesta in Piano/Richieste.md: l'attività programmata "bussola-piano" la legge e ricalcola settimana e da fare.
 async function chiediAClaude(titolo, testo) {
   const p = path.join(PIANO, 'Richieste.md'); const n = new Date();
@@ -815,7 +823,7 @@ async function stato() {
   { // La fine che manca si prende da dati/calendario.json (stesso giorno, stessa ora, titolo simile).
     const cj = await leggiJson('calendario.json'), oggiCal = (cj.eventi || []).filter(e => e.data === oggiIso() && e.fine), nome = t => String(t || '').toLowerCase().replace(/[^a-zà-ú0-9]+/g, ' ').trim();
     ag.eventi = ag.eventi.map(e => { if (e.fine) return e; const c = oggiCal.find(x => x.ora === e.ora && (nome(x.titolo).includes(nome(e.titolo)) || nome(e.titolo).includes(nome(x.titolo)))) || oggiCal.find(x => x.ora === e.ora); return c ? { ...e, fine: c.fine } : e; }); }
-  return { nome: CONFIG.nome || '', marchio: CONFIG.titolo || 'Bussola', nascondi: Array.isArray(CONFIG.nascondi) ? CONFIG.nascondi : [], obiettivoSoldi: Number(CONFIG.obiettivoSoldi) || 0, data: oggiIso(), titolo: titoloGiorno(oggiIso()), primaVolta, checkMensile: !primaVolta && bussola.ultimoCheck !== oggiIso().slice(0, 7), oggi, settimana: primaVolta ? [] : await leggiSettimana(), agenda: ag, segnale: await leggiSegnale(), cambi: await cambiAperti() };
+  return { nome: CONFIG.nome || '', marchio: CONFIG.titolo || 'Bussola', nascondi: Array.isArray(CONFIG.nascondi) ? CONFIG.nascondi : [], obiettivoSoldi: Number(CONFIG.obiettivoSoldi) || 0, data: oggiIso(), titolo: titoloGiorno(oggiIso()), primaVolta, checkMensile: !primaVolta && bussola.ultimoCheck !== oggiIso().slice(0, 7), riallineamento: primaVolta ? null : await leggiRiallineamento(), oggi, settimana: primaVolta ? [] : await leggiSettimana(), agenda: ag, segnale: await leggiSegnale(), cambi: await cambiAperti() };
 }
 const rotte = {
   'GET /api/stato': stato,

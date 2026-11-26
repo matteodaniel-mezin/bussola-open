@@ -179,6 +179,24 @@ Le giornate seguono gli obiettivi del mese: lavoro e salute vanno avanti. Il gio
 ## Una cosa da cambiare
 Telefono fuori dalla camera la sera: i giorni dopo una sera al telefono hanno voto 2.
 `);
+  scrivi('Piano/Riallineamento.md', `
+---
+stato: aperto
+data: ${G(0)}
+tipo_giro: settimana
+chat: Come sto andando
+---
+# Riallineamento
+
+Domande preparate dall'attività "riallineamento". Si risponde nella chat "Come sto andando".
+
+## Domande
+- Hai corso due volte su tre questa settimana: l'obiettivo "tre volte a settimana" è ancora quello giusto, o meglio due?
+- Palestra Nord è in attesa da sei giorni: la tieni tra le priorità della settimana prossima o la metti in pausa?
+- Il gioco è a 2 da tre settimane: cosa ti piacerebbe fare questo weekend?
+
+## Risposte
+`);
   scrivi('Piano/Richieste.md', `
 # Richieste a Claude
 

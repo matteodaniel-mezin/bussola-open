@@ -54,6 +54,11 @@ In questo file "io" è il proprietario del vault. Claude legge queste regole a o
 
 - `Stato.md`: ultimo controllo, cosa è cambiato, `## Da approvare` (una riga `- ` per proposta di lezione), decisioni che servono a me. È il primo file da guardare quando apro una sessione.
 
+## Chat e riallineamento
+
+- Ho una chat di Claude per ogni macrocategoria: Generale, La mia giornata, Come sto andando, Lavoro (più Design, nella cartella di Bussola). Ogni chat scrive subito nel vault quello che decidiamo o scopriamo, nel formato giusto.
+- `Piano/Riallineamento.md`: domande preparate ogni domenica sera e a fine mese. Rispondo nella chat Come sto andando, che aggiorna Obiettivi, Bussola e Roadmap, mette `stato: fatto` e lascia una nota nel Diario.
+
 ## Giro automatico
 
 - Un'attività programmata di Claude gira ogni ora: smista `Inbox`, aggiorna `Contesti` e `Diario`, propone lezioni in `Stato.md`, elabora `Piano/Lezioni scelte.md`. Se non c'è nulla di nuovo esce subito.

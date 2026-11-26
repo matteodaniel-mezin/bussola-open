@@ -44,6 +44,13 @@ Le tue scelte restano in `PERSONALIZZAZIONE.md`, solo sul tuo computer: le sessi
 
 Colori e caratteri stanno tutti in `public/tema.css`: puoi cambiarli anche a mano.
 
+## Un Second Brain che resta vivo
+
+- **Una chat per ogni parte della tua vita**: Generale, La mia giornata, Come sto andando, Lavoro, Design. Claude te le apre durante l'onboarding; tutte scrivono nel tuo vault.
+- **Tre attività automatiche** tengono il vault aggiornato: il pianificatore (ogni due ore), il giro orario (smista e collega quello che arriva) e il **riallineamento**.
+- **Riallineamento**: ogni domenica e a fine mese Claude prepara domande sulla tua settimana e sui tuoi obiettivi. Le vedi in Oggi e rispondi nella chat Come sto andando.
+- **La piattaforma si adatta a te**: quando visione e obiettivi cambiano, Claude ti propone quali pagine tenere, cosa aggiungere e su cosa concentrare le proposte.
+
 ## Cosa c'è
 
 | Percorso | Cosa |
@@ -58,7 +65,7 @@ Colori e caratteri stanno tutti in `public/tema.css`: puoi cambiarli anche a man
 | `onboarding/` | I passi dell'onboarding, le domande per ramo, il riferimento per colori e caratteri |
 | `.claude/skills/` | Le skill grill-me e grilling, per le domande dell'onboarding |
 | `public/tema.css` | Colori e caratteri |
-| `modelli/` | `CLAUDE.md` del vault, istruzioni delle attività programmate, avvio automatico su Mac |
+| `modelli/` | `CLAUDE.md` del vault, istruzioni delle tre attività programmate, avvio automatico su Mac |
 
 ## Funzioni facoltative
 

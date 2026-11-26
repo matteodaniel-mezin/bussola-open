@@ -225,6 +225,23 @@ Una sola cosa.
 
 `stato` è `in linea` o `devia`.
 
+### `Piano/Riallineamento.md`
+
+```
+---
+stato: aperto
+data: 2026-03-15
+tipo_giro: settimana
+chat: Come sto andando
+---
+## Domande
+- Fatto letto nei file + domanda di decisione.
+
+## Risposte
+```
+
+Lo scrive l'attività di riallineamento. Finché `stato` è `aperto` Bussola mostra le domande in Oggi. La chat Come sto andando le fa all'utente, scrive le risposte, aggiorna obiettivi e piattaforma (modulazione, in `CLAUDE.md`) e mette `stato: fatto`.
+
 ### `Piano/Richieste.md`
 
 ```
@@ -440,6 +457,10 @@ Si creano dall'app Claude (attività programmate). Girano solo a Mac acceso e ap
 
 1. **Pianificatore** (`bussola-piano`), ogni due ore dalle 6 alle 22. Istruzioni in `modelli/pianificatore.md`: sostituisci `{{VAULT}}` e `{{DATI}}` con i percorsi veri. Fa: richieste, micro-obiettivi della settimana, proposte di oggi, calendario e soldi dai connettori, voto e segnale la sera, proposte del weekend.
 2. **Giro orario del vault**, ogni ora dalle 8 alle 23. Istruzioni in `modelli/giro-orario.md`. Fa: smista Inbox, scrive le call nel Diario, aggiorna i Contesti, propone le lezioni, elabora le scelte.
+
+3. **Riallineamento**, la domenica alle 19 e l'ultimo giorno del mese. Istruzioni in `modelli/riallineamento.md` (sostituisci `{{VAULT}}` e `{{PROGETTO}}`). Prepara in `Piano/Riallineamento.md` le domande per controllare obiettivi e visione; Bussola le mostra in Oggi e l'utente risponde nella chat Come sto andando.
+
+Le tre attività sono quelle che tengono vivo il Second Brain: consigliale. Poi apri le chat per macrocategoria (`onboarding/chat.md`).
 
 Connettori di Claude utili (facoltativi): Google Calendar, Google Sheets (soldi), Fathom (call), Vercel e Supabase (progetti).
 
