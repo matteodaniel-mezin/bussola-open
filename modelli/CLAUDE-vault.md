@@ -32,6 +32,7 @@ In questo file "io" è il proprietario del vault. Claude legge queste regole a o
 - `Richieste.md`: richieste a Claude scritte dalla piattaforma. Claude fa il lavoro e sposta la riga sotto `## Fatte`.
 - `Lezioni scelte.md`: le mie scelte sulle proposte di lezione. Il giro orario crea la lezione o aggiunge l'evento e sposta la riga sotto `## Fatte`.
 - `Segnale.md`: lo scrive Claude la sera, dopo aver letto le giornate.
+- `Vita.md`: il mio ritratto, area per area (cosa faccio, con chi, quando, con cosa, come va). Leggilo prima di proporre qualcosa. Si aggiorna quando racconto un cambiamento; le tue deduzioni si propongono, non si scrivono.
 
 ## Collegamenti
 

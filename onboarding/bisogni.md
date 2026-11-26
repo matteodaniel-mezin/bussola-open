@@ -1,6 +1,6 @@
 # Bisogni: rami e pagine
 
-Ogni ramo ha la domanda da cui partire, quando aprirlo e le pagine o i servizi che decide. Le domande successive le genera `grilling` dalle risposte.
+Ogni ramo ha la domanda da cui partire, quando aprirlo e le pagine o i servizi che decide. Le domande successive le genera `grilling` dalle risposte. Molti rami hanno già risposta nel ritratto (`Piano/Vita.md`, da [`vita.md`](vita.md)): lì chiedi solo quello che manca per decidere pagine e strumenti.
 
 | Ramo | Domanda di partenza | Aprilo se | Decide |
 |---|---|---|---|

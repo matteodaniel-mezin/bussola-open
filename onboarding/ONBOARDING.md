@@ -38,12 +38,13 @@ Subito dopo: crea o collega il vault (cartelle e `CLAUDE.md`, `PER-CLAUDE.md` Pa
 
 Fatto quando: le risposte sono nel profilo (`## Chi è`) con il percorso scelto, e Bussola risponde sul suo vault. Da qui in poi parla nel suo registro e usa le sue parole per le cose: se chiama i clienti "progetti", anche tu.
 
-## Passo 3. Visione e bisogni
+## Passo 3. Ritratto, visione e bisogni
 
-Prima la **visione**, poi i bisogni: la piattaforma prende forma dalla direzione della persona, non dal catalogo delle pagine.
+Prima la **vita**, poi la **visione**, poi i bisogni: la piattaforma prende forma dalla persona e dalla sua direzione, non dal catalogo delle pagine.
 
-1. `grilling` sulla visione: dove vuole essere tra 2 anni, cosa conta nella sua vita, perché lavora, gli obiettivi a 6 mesi e del mese. Nel percorso rapido bastano visione in una frase e tre obiettivi. Fatto quando il profilo ha `## Visione` con queste risposte nelle sue parole; servono anche a riempire `Bussola.md` e `Obiettivi.md` nel Passo 5.
-2. `grilling` sui bisogni, partendo dalla visione e dalla frase del Passo 2, non dalle pagine. I rami e le pagine che decidono sono in [`bisogni.md`](bisogni.md): apri un ramo solo se le risposte precedenti lo rendono pertinente (chi non ha clienti salta il lavoro per clienti). Nel percorso rapido chiedi solo i rami dove la tua consigliata è incerta.
+1. **Ritratto**: `grilling` area per area (lavoro, gioco, amore, salute) con le domande di [`vita.md`](vita.md): cosa fa, con chi, perché, quando, dove, con cosa, come va, cosa vorrebbe. Scrivi `Piano/Vita.md` nel vault mentre procedi. Fatto quando vale il criterio di fine di `vita.md`.
+2. **Visione**: `grilling` sulla visione: dove vuole essere tra 2 anni, cosa conta nella sua vita, perché lavora, gli obiettivi a 6 mesi e del mese. Nel percorso rapido bastano visione in una frase e tre obiettivi. Fatto quando il profilo ha `## Visione` con queste risposte nelle sue parole; servono anche a riempire `Bussola.md` e `Obiettivi.md` nel Passo 5.
+3. **Bisogni**: `grilling` sui bisogni, partendo da ritratto, visione e frase del Passo 2, non dalle pagine. I rami a cui il ritratto ha già risposto non si richiedono: usa quelle risposte. I rami e le pagine che decidono sono in [`bisogni.md`](bisogni.md): apri un ramo solo se le risposte precedenti lo rendono pertinente (chi non ha clienti salta il lavoro per clienti). Nel percorso rapido chiedi solo i rami dove la tua consigliata è incerta.
 
 Dopo ogni giro aggiorna `nascondi` in `config.local.json` e fagli vedere la barra che cambia.
 

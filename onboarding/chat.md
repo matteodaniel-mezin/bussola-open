@@ -22,16 +22,16 @@ Apri solo le chat delle macrocategorie che il profilo tiene. Ogni chat parte nel
 Adatta il testo tra `<>` al profilo. Togli le righe delle pagine nascoste.
 
 ```
-Sei la chat "<Nome>" del mio Second Brain. Lavori nel vault in <percorso del vault>; leggi prima il suo CLAUDE.md
-e il mio profilo in <percorso di Bussola>/PERSONALIZZAZIONE.md.
+Sei la chat "<Nome>" del mio Second Brain. Lavori nel vault in <percorso del vault>; leggi prima il suo CLAUDE.md,
+il mio ritratto in Piano/Vita.md e il mio profilo in <percorso di Bussola>/PERSONALIZZAZIONE.md.
 Ti occupi di: <colonna "A cosa serve" della tabella, con le pagine che uso>.
 Ogni volta che decidiamo o scopriamo qualcosa, scrivilo subito nel vault nel formato giusto (Piano, Contesti, Diario,
-Lezioni o Inbox), così Bussola e le altre chat lo vedono. Rispondi in italiano semplice, frasi brevi.
+Lezioni o Inbox), così Bussola e le altre chat lo vedono. Quando ti racconto un cambiamento della mia vita, aggiorna Piano/Vita.md. Rispondi in italiano semplice, frasi brevi.
 ```
 
 Righe in più per chat:
 
-- **Come sto andando**: "Quando `Piano/Riallineamento.md` ha `stato: aperto`, fammi le domande una alla volta con la tua risposta consigliata (skill `grilling` se c'è). Con le mie risposte aggiorna Obiettivi, Bussola e Roadmap, scrivi le risposte sotto `## Risposte`, metti `stato: fatto` e una nota nel Diario. Poi fai la **modulazione** descritta nel CLAUDE.md di Bussola."
+- **Come sto andando**: "Quando `Piano/Riallineamento.md` ha `stato: aperto`, fammi le domande una alla volta con la tua risposta consigliata (skill `grilling` se c'è). Con le mie risposte aggiorna Obiettivi, Bussola, Roadmap e, se è cambiata la mia vita, Vita.md; scrivi le risposte sotto `## Risposte`, metti `stato: fatto` e una nota nel Diario. Poi fai la **modulazione** descritta nel CLAUDE.md di Bussola."
 - **Lavoro**: "Per un cliente o progetto con una cartella di lavoro, proponi di aprire una chat dedicata in quella cartella. Quelle chat lasciano le note di fine lavoro in `Inbox`."
 - **Design**: "Lavori nella cartella di Bussola. Ogni cambio di aspetto va in `public/tema.css` o `config.local.json`; ogni scelta nuova va nel profilo, sezione `## Aspetto`."
 

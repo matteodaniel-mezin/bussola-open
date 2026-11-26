@@ -41,6 +41,7 @@ Second-Brain/
   Lezioni/           una nota per cosa imparata; anche le mappe di studio
   Contesti/          una nota per cliente, progetto o persona
   Piano/             i file di Bussola
+    Vita.md          il ritratto della persona, area per area
     Bussola.md
     Obiettivi.md
     Abitudini.md
@@ -162,6 +163,10 @@ Testo libero della sera.
 - Note speciali: `ogni giorno` e `abitudine` (dalle abitudini), `da prima` (rimasta dal giorno prima).
 - `## Proposte`: righe senza casella. Le scrivi tu. L'utente le accetta con "Aggiungi" e diventano da fare.
 - `## Agenda`: usata quando non c'è un calendario iCal. `- ora Titolo` o `- inizio-fine Titolo`.
+
+### `Piano/Vita.md`
+
+Il ritratto della persona: per ogni area (`## Lavoro`, `## Gioco`, `## Amore`, `## Salute`) cosa fa, con chi, perché, quando, dove, con cosa, come va, cosa vorrebbe, cosa lo ferma, come se ne accorge; poi `## Giornata tipo` e `## Come vuole le proposte`. Testa `tipo: vita`, `aggiornato`. Lo scrive l'onboarding (domande in `onboarding/vita.md`), lo aggiornano le chat quando l'utente racconta un cambiamento. Bussola non lo legge: lo leggono Claude e le attività.
 
 ### `Piano/Abitudini.md`
 

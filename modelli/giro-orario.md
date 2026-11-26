@@ -13,6 +13,7 @@ Per ogni file nuovo in `Inbox`:
 - **Trascrizione di una call** (`tipo: trascrizione-call`, o una call registrata): scrivi la nota in `Diario` dalla trascrizione intera. Nome `AAAA-MM-GG Titolo.md`, testa con `evento: call`, `data`, `contesto: "[[Nome]]"`, `voto` da 1 a 10. Sezioni `## Esito`, `## Cosa è successo`, `## Cosa ho fatto bene`, `## Cosa ho sbagliato`, `## Impegni`, `## Lezioni`.
 - **Vocale** (`tipo: vocale`): se racconta una giornata o un evento, aggiorna il Diario e il contesto giusto.
 - **Nota di fine lavoro di un'altra chat di Claude**: aggiorna il contesto collegato; se il progetto non corrisponde a nessun contesto, non crearne uno: scrivilo in `Stato.md` tra le decisioni che servono all'utente.
+- Se il materiale racconta un cambiamento nella vita dell'utente detto da lui (un cliente nuovo, un orario diverso, uno sport iniziato, una persona importante), aggiorna la riga giusta di `Piano/Vita.md` e la data `aggiornato`. Se è una tua deduzione, proponila in `Stato.md`.
 - Aggiorna la nota in `Contesti`: `## Cronologia` e `## Aperto` (la prima riga è il prossimo passo). Non toccare la riga `stato:`.
 - Il file in `Inbox` resta: si cancella solo dopo l'ok dell'utente. Segna in `Stato.md` che è smistato.
 

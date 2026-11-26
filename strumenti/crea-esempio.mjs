@@ -179,6 +179,46 @@ Le giornate seguono gli obiettivi del mese: lavoro e salute vanno avanti. Il gio
 ## Una cosa da cambiare
 Telefono fuori dalla camera la sera: i giorni dopo una sera al telefono hanno voto 2.
 `);
+  scrivi('Piano/Vita.md', `
+---
+tipo: vita
+aggiornato: ${G(-20)}
+---
+# Vita
+
+## Lavoro
+- Cosa: web designer freelance, siti e piccole app.
+- Con chi: Libreria Il Faro (Anna), Palestra Nord (Marco), Studio Verde.
+- Perché: scegliere i progetti e avere tempo libero.
+- Quando: lunedì-venerdì 9-13 e 14:30-18; venerdì pomeriggio libero.
+- Dove: da casa, Studio Verde il lunedì.
+- Con cosa: Figma, VS Code, Google Calendar, Fathom.
+- Come va: 3/5, troppi clienti in attesa.
+- Cosa vorrebbe: tre canoni mensili tra sei mesi.
+- Cosa lo ferma: preventivi lenti.
+- Come se ne accorge: un preventivo mandato a settimana.
+
+## Gioco
+- Cosa: montagna, fotografia, cinema.
+- Con chi: Luca e Sara.
+- Quando: sabato, una sera a settimana.
+- Come va: 2/5.
+
+## Amore
+- Con chi vive: da solo. Nonna da chiamare la domenica.
+- Amici: Luca e Sara, cena il sabato.
+
+## Salute
+- Sonno: 23:30-7:30.
+- Movimento: corsa martedì e giovedì alle 18:30.
+- Energia: al massimo la mattina.
+
+## Giornata tipo
+Sveglia 7:30, camminata, lavoro importante entro le 13, pomeriggio call e revisioni, sera libera.
+
+## Come vuole le proposte
+Poche, la sera prima.
+`);
   scrivi('Piano/Riallineamento.md', `
 ---
 stato: aperto

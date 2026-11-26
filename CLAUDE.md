@@ -21,7 +21,7 @@ Unica eccezione: il proprietario dell'originale (`gh api user --jq .login` rispo
 All'inizio di ogni sessione leggi `PERSONALIZZAZIONE.md` nella radice:
 
 - **manca**, o ha `stato: in corso`: segui [`onboarding/ONBOARDING.md`](onboarding/ONBOARDING.md), riprendendo dal passo segnato lì. Proponilo all'utente nel primo messaggio, dopo aver risposto a quello che ha chiesto.
-- ha `stato: fatto`: è il **profilo** della persona. Ogni scelta che fai (parole, pagine, proposte, codice) parte da lì. Una richiesta che cambia il profilo si chiude aggiornandolo.
+- ha `stato: fatto`: è il **profilo** della persona; il suo **ritratto** (cosa fa, con chi, quando, con cosa, in ogni area della vita) è `Piano/Vita.md` nel vault. Ogni scelta che fai (parole, pagine, proposte, codice) parte da lì. Una richiesta che cambia il profilo si chiude aggiornandolo.
 
 ## Un Second Brain vivo
 
@@ -31,7 +31,7 @@ Il **riallineamento** è il ritmo con cui la persona controlla la sua direzione:
 
 ## Modulazione
 
-La piattaforma prende forma dalla **visione** e dagli **obiettivi** della persona (profilo, `## Visione`; `Piano/Bussola.md`, `Piano/Obiettivi.md`). Ogni volta che cambiano (onboarding, riallineamento, controllo del mese, o l'utente lo dice) fai la modulazione, e proponi le modifiche in un solo giro:
+La piattaforma prende forma dalla **visione** e dagli **obiettivi** della persona (profilo, `## Visione`; `Piano/Bussola.md`, `Piano/Obiettivi.md`). Ogni volta che cambiano, o cambia il ritratto (onboarding, riallineamento, controllo del mese, o l'utente lo dice) fai la modulazione, e proponi le modifiche in un solo giro:
 
 1. **Pagine**: ogni pagina tenuta serve a un obiettivo o alla visione? Proponi cosa nascondere (`nascondi`) e cosa rimettere.
 2. **Cose nuove**: un obiettivo che nessuna pagina aiuta a seguire chiede una pagina, una sezione o un'abitudine nuova: proponi come costruirla.
