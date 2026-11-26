@@ -9,7 +9,7 @@ Bussola legge e scrive file Markdown nel tuo vault: da fare del giorno, voto del
 - I tuoi dati restano nel tuo vault. Niente database, niente account.
 - Interfaccia in italiano.
 
-## Prova subito
+## Installa
 
 Serve Node.js 20 o più recente.
 
@@ -19,7 +19,7 @@ cd bussola-open
 node server.mjs
 ```
 
-Apri `http://localhost:4321`. Senza configurazione Bussola crea e usa un vault di esempio (`vault-esempio/`), con persone, clienti e numeri inventati: un avviso giallo nella barra lo ricorda finché non colleghi il tuo vault. Per rifarlo da capo: `node strumenti/crea-esempio.mjs --forza`.
+Apri `http://localhost:4321`. Finché non colleghi il tuo vault, Bussola non mostra nessun dato: ti dice solo come collegarlo. Il modo più semplice è farlo fare a Claude (vedi sotto).
 
 ## La tua copia
 
@@ -62,7 +62,7 @@ Colori e caratteri stanno tutti in `public/tema.css`: puoi cambiarli anche a man
 | `server.mjs` | Server: legge e scrive il vault, serve le pagine e le API |
 | `calendario.mjs` | Lettura dei calendari iCal |
 | `public/` | Le pagine (HTML, CSS, JavaScript senza framework) |
-| `strumenti/crea-esempio.mjs` | Crea il vault e i dati di esempio |
+| `strumenti/crea-esempio.mjs` | Crea un vault di prova con dati inventati, per chi sviluppa (`BUSSOLA_VAULT=vault-esempio`) |
 | `strumenti/vettori.swift` | Ricerca per significato, con il modello di frasi di Apple (facoltativo, solo Mac) |
 | `widget/main.swift` | Finestrella sulla scrivania con i da fare di oggi (facoltativo, solo Mac) |
 | `CLAUDE.md` | Istruzioni per Claude, lette a ogni sessione |

@@ -21,9 +21,9 @@ Senza fare domande, in parallelo:
 - connettori di Claude disponibili in questa sessione (Google Calendar, Google Sheets, Fathom, Vercel, Supabase);
 - un `~/.claude/CLAUDE.md` che parli già di un second brain.
 
-Poi avvia Bussola sul vault di esempio e dillo subito all'utente: quello che vede sono persone e numeri **inventati**, che spariscono quando colleghi il suo vault. Avvia (`node server.mjs`, con `BUSSOLA_PORT` se la 4321 è occupata) e tienilo acceso per tutto l'onboarding.
+All'utente mostri solo il **suo** vault, mai quello di esempio: il vault di esempio (`strumenti/crea-esempio.mjs`) serve solo a te, per le prove, e si apre solo con `BUSSOLA_VAULT=vault-esempio`.
 
-Fatto quando: ogni voce qui sopra ha una risposta e il server risponde. Scrivi il risultato nel profilo, sezione `## Computer`, e crea il profilo con `stato: in corso` e `passo: 2`.
+Fatto quando: ogni voce qui sopra ha una risposta. Scrivi il risultato nel profilo, sezione `## Computer`, e crea il profilo con `stato: in corso` e `passo: 2`.
 
 ## Passo 2. Il taglio
 
@@ -32,8 +32,11 @@ Un solo giro breve, tre domande, per decidere come condurre il resto:
 1. Cosa vorrebbe che cambiasse nelle sue giornate tra un mese, in una frase sua.
 2. Quanto tempo ha adesso: **rapido** (10 minuti: solo le domande che cambiano il risultato, il resto prende la tua risposta consigliata) o **completo** (20-30 minuti: tutti i rami).
 3. Quanto è a suo agio con computer e terminale: decide quanto spieghi e quanto fai da solo.
+4. Dove tenere il vault: quello che hai trovato al Passo 1, oppure uno nuovo (consigliato `~/Documents/Second-Brain`).
 
-Fatto quando: le tre risposte sono nel profilo (`## Chi è`) con il percorso scelto. Da qui in poi parla nel suo registro e usa le sue parole per le cose: se chiama i clienti "progetti", anche tu.
+Subito dopo: crea o collega il vault (cartelle e `CLAUDE.md`, `PER-CLAUDE.md` Passi 1-3), scrivi `config.local.json` con `vault` e avvia Bussola (`node server.mjs`, con `BUSSOLA_PORT` se la 4321 è occupata). Tienila accesa per tutto l'onboarding: da qui in poi ogni anteprima è sul suo vault.
+
+Fatto quando: le risposte sono nel profilo (`## Chi è`) con il percorso scelto, e Bussola risponde sul suo vault. Da qui in poi parla nel suo registro e usa le sue parole per le cose: se chiama i clienti "progetti", anche tu.
 
 ## Passo 3. Visione e bisogni
 
@@ -62,8 +65,8 @@ Fatto quando: l'utente guarda la pagina Oggi e una seconda pagina che userà spe
 
 Solo quello che il profilo chiede, in quest'ordine (dal più utile al facoltativo):
 
-1. **Vault**: usa quello esistente se c'è, altrimenti crealo (`PER-CLAUDE.md`, Passi 1-3). Il `CLAUDE.md` del vault parte da `modelli/CLAUDE-vault.md` e prende ritmo, contesti e regole dal profilo; tieni solo le sezioni delle pagine che usa.
-2. **Configurazione**: `config.local.json` da `config.esempio.json` con `vault` vero. Spiegagli dove trovare indirizzi iCal e chiave di Fathom, se li vuole, e aspetta che li incolli lui.
+1. **Vault**: già collegato al Passo 2. Completa il suo `CLAUDE.md` partendo da `modelli/CLAUDE-vault.md`, con ritmo, contesti e regole del profilo; tieni solo le sezioni delle pagine che usa. Scrivi `Piano/Bussola.md` e `Piano/Obiettivi.md` dalla visione del Passo 3.
+2. **Configurazione**: completa `config.local.json` (le chiavi in `config.esempio.json`). Spiegagli dove trovare indirizzi iCal e chiave di Fathom, se li vuole, e aspetta che li incolli lui.
 3. **Funzioni facoltative** scelte, installando solo i programmi che mancano (`PER-CLAUDE.md`, Passo 6).
 4. **Attività automatiche**: sono il cuore del Second Brain, perché lo tengono aggiornato anche quando l'utente non ci pensa. Consigliale tutte e tre e attivale con il suo ok, adattate al profilo (pagine nascoste tolte, il suo ritmo scritto):
    - `modelli/pianificatore.md`, ogni due ore: settimana, proposte, voto, segnale;

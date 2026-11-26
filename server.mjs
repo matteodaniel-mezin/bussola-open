@@ -14,11 +14,12 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 // "vault" è il percorso del tuo vault Obsidian; "~" vale la tua cartella utente. Senza file si usa il vault di esempio.
 const CONFIG = (() => { try { return JSON.parse(readFileSync(path.join(HERE, 'config.local.json'), 'utf8')); } catch { return {}; } })();
 const espandi = p => String(p || '').replace(/^~(?=$|\/)/, os.homedir());
-const VAULT = path.resolve(HERE, espandi(process.env.BUSSOLA_VAULT || CONFIG.vault || 'vault-esempio'));
-// Senza un vault configurato si usa quello di esempio, con dati finti: se manca, si crea adesso.
-const ESEMPIO = !process.env.BUSSOLA_VAULT && !CONFIG.vault;
-if (ESEMPIO) { const { creaEsempio } = await import('./strumenti/crea-esempio.mjs'); creaEsempio(); }
-const PIANO = path.join(VAULT, 'Piano');
+// Senza un vault configurato Bussola non mostra dati: chiede di collegarne uno (lo fa Claude nell'onboarding).
+const DA_CONFIGURARE = !process.env.BUSSOLA_VAULT && !CONFIG.vault;
+const VAULT = DA_CONFIGURARE ? null : path.resolve(HERE, espandi(process.env.BUSSOLA_VAULT || CONFIG.vault));
+// Il vault di esempio (strumenti/crea-esempio.mjs) si usa solo per le prove, indicandolo a mano: BUSSOLA_VAULT=vault-esempio.
+const ESEMPIO = !!VAULT && path.basename(VAULT) === 'vault-esempio';
+const PIANO = VAULT ? path.join(VAULT, 'Piano') : null;
 const PORT = Number(process.env.BUSSOLA_PORT || CONFIG.porta || 4321);
 const AREE = ['lavoro', 'gioco', 'amore', 'salute'];
 const GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
@@ -368,7 +369,7 @@ async function calendario(_, url) {
 }
 
 // ---------- liste: Piano/Liste/<Nome>.md ----------
-const DIR_LISTE = path.join(PIANO, 'Liste');
+const DIR_LISTE = PIANO ? path.join(PIANO, 'Liste') : null;
 const nomeLista = n => String(n || '').replace(/[\\/:*?"<>|#^\[\]]/g, ' ').replace(/^[.\s]+/, '').replace(/\s+/g, ' ').trim().slice(0, 60);
 async function leggiLista(nome) {
   const t = await leggi(path.join(DIR_LISTE, nome + '.md')); if (t == null) return null;
@@ -910,6 +911,11 @@ const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, 'http://x'); const chiave = `${req.method} ${url.pathname}`;
     if (chiave === 'GET /api/corso/pdf') { const pdf = await pdfCorso(url.searchParams.get('id') || ''); if (!pdf) { res.writeHead(404); return res.end(); } res.writeHead(200, { 'content-type': 'application/pdf', 'cache-control': 'no-cache' }); return res.end(await fs.readFile(pdf.file)); }
     if (chiave === 'POST /api/vocali') { const pezzi = []; let n = 0; for await (const c of req) { n += c.length; if (n > 80e6) throw new Error('audio troppo grande'); pezzi.push(c); } const dati = await caricaVocale(Buffer.concat(pezzi), url); res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' }); return res.end(JSON.stringify(dati)); }
+    if (DA_CONFIGURARE && url.pathname.startsWith('/api/')) {
+      // Niente vault: nessun dato da leggere o scrivere. Le pagine mostrano come collegarlo.
+      res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' });
+      return res.end(JSON.stringify(chiave === 'GET /api/segno' ? { versione: 'da-configurare', dati: '', giorno: oggiIso() } : { daConfigurare: true, marchio: CONFIG.titolo || 'Bussola' }));
+    }
     if (rotte[chiave]) {
       let corpo = {}; if (req.method === 'POST') { let raw = ''; for await (const c of req) { raw += c; if (raw.length > 100000) throw new Error('troppo grande'); } corpo = raw ? JSON.parse(raw) : {}; }
       const dati = await rotte[chiave](corpo, url); res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' }); return res.end(JSON.stringify(dati));
@@ -922,5 +928,5 @@ const server = http.createServer(async (req, res) => {
     const manca = e.code === 'ENOENT'; res.writeHead(manca ? 404 : 400, { 'content-type': 'application/json; charset=utf-8' }); res.end(JSON.stringify({ errore: manca ? 'non trovato' : String(e.message || e) }));
   }
 });
-server.listen(PORT, '127.0.0.1', () => console.log(`Bussola su http://localhost:${PORT} · vault: ${VAULT}`));
-setTimeout(controllaCalendario, 3000); setInterval(controllaCalendario, Number(process.env.BUSSOLA_CONTROLLO_MS) || 60000);
+server.listen(PORT, '127.0.0.1', () => console.log(`Bussola su http://localhost:${PORT} · ${VAULT ? 'vault: ' + VAULT : 'nessun vault collegato: scrivi "vault" in config.local.json'}`));
+if (!DA_CONFIGURARE) { setTimeout(controllaCalendario, 3000); setInterval(controllaCalendario, Number(process.env.BUSSOLA_CONTROLLO_MS) || 60000); }

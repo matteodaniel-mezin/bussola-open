@@ -56,7 +56,7 @@ Second-Brain/
 
 Molti file li crea Bussola al primo uso (Bussola, Obiettivi, Abitudini, Giorni, Richieste, Lezioni scelte, Liste). Tu crea almeno le cartelle, `CLAUDE.md` e `Stato.md`.
 
-Per vedere un vault completo con dati finti: avvia Bussola senza configurazione (passo 6). Lo script `strumenti/crea-esempio.mjs` crea `vault-esempio/` e `dati-esempio/`. È il miglior esempio di ogni formato qui sotto.
+Per vedere un vault completo con dati finti, solo per te e per le prove: `node strumenti/crea-esempio.mjs` crea `vault-esempio/` e `dati-esempio/`, e `BUSSOLA_VAULT=vault-esempio node server.mjs` li apre. È il miglior esempio di ogni formato qui sotto. All'utente non mostrarlo: vede solo il suo vault.
 
 ## Passo 3. Il `CLAUDE.md` del vault
 
@@ -403,7 +403,7 @@ Una nota in `Inbox` o `Lezioni` con testa `tipo: corso`, `mappa: "[[Nome della m
 | `nascosti.json` | tu, su richiesta | `[{ data, titolo }]`: impegni da non mostrare |
 | `segnalibri.json`, `cambi-calendario.json`, `ricerca.json` | Bussola | non toccarli |
 
-Esempi completi in `dati-esempio/` dopo il primo avvio.
+Esempi completi in `dati-esempio/`, dopo `node strumenti/crea-esempio.mjs`.
 
 ## Passo 6. Installare e avviare Bussola
 
@@ -415,7 +415,7 @@ cd bussola-open
 node server.mjs
 ```
 
-Senza configurazione Bussola usa il vault di esempio e lo crea da sé. Apri `http://localhost:4321`.
+Senza configurazione Bussola non mostra dati: dice che non è ancora collegata e come collegarla. Apri `http://localhost:4321`.
 
 Per collegare il vault vero:
 

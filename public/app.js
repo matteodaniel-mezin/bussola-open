@@ -1001,9 +1001,21 @@ addEventListener('keydown', e => {
 
 // ---------- avvio ----------
 const PAGINE = { oggi, calendario, liste, weekend, lezioni, corso, obiettivi, giornate, contesti, call, vocali, progetti, soldi, movimenti, impostazioni, mese, piano: obiettivi, lavoro: contesti };
+// Nessun vault collegato: niente dati, solo come collegarlo. Lo fa Claude nell'onboarding.
+function daConfigurare() {
+  document.title = S.marchio || 'Bussola'; pag = 'config';
+  radice.innerHTML = `<main class="config-pagina"><div class="config-vuoto">
+    <h1 class="saluto">${esc(S.marchio || 'Bussola')} non è ancora collegata</h1>
+    <p class="sotto">Manca il tuo taccuino: il vault di Obsidian dove finiscono giornate, obiettivi e lavoro. Qui non c'è nessun dato, né tuo né di altri.</p>
+    <ol class="config-passi"><li>Apri Claude Code in questa cartella.</li><li>Scrivi: <q>Leggi il CLAUDE.md e fammi l'onboarding.</q></li><li>Claude ti fa qualche domanda, crea o collega il tuo vault e riaccende Bussola. Questa pagina diventa la tua.</li></ol>
+    <p class="piccolo">Se preferisci farlo a mano: copia <code>config.esempio.json</code> in <code>config.local.json</code>, scrivi in <code>"vault"</code> il percorso del tuo vault e riavvia il server.</p>
+  </div></main>`;
+}
 async function mostra() {
   try {
-    S = await api('/api/stato'); document.title = (S.marchio || 'Bussola') + (S.esempio ? ' · esempio' : ''); const [dove, ...resto] = (location.hash.slice(1) || 'oggi').split('/');
+    S = await api('/api/stato');
+    if (S.daConfigurare) return daConfigurare();
+    document.title = (S.marchio || 'Bussola') + (S.esempio ? ' · esempio' : ''); const [dove, ...resto] = (location.hash.slice(1) || 'oggi').split('/');
     if (dove !== 'mese' && bozza?.mensile) bozza = null;
     await (PAGINE[dove] || oggi)();
   } catch (e) { errore(e); }
