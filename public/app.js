@@ -47,7 +47,7 @@ function barra(attiva) {
   return `<nav class="lato" aria-label="Sezioni"><a class="marchio" href="#oggi">${esc(S?.marchio || 'Bussola')}</a>
     ${nav.map(([g, voci]) => `<p class="gruppo">${g}</p>${voci.map(voce).join('')}`).join('')}
     <p class="gruppo">Altro</p>${FONDO.map(voce).join('')}<span class="molla"></span>
-    ${SEGNALE}</nav>`;
+    ${S?.esempio ? `<p class="esempio-b" role="note"><b>Dati di esempio</b><span>Persone, clienti e numeri inventati. Quando colleghi il tuo vault spariscono.</span></p>` : ''}${SEGNALE}</nav>`;
 }
 function pagina(attiva, centro, destra, larga) {
   const su = pag === attiva && !salto ? radice.querySelector('.centro')?.scrollTop || 0 : 0; pag = attiva; salto = false;
@@ -1003,7 +1003,7 @@ addEventListener('keydown', e => {
 const PAGINE = { oggi, calendario, liste, weekend, lezioni, corso, obiettivi, giornate, contesti, call, vocali, progetti, soldi, movimenti, impostazioni, mese, piano: obiettivi, lavoro: contesti };
 async function mostra() {
   try {
-    S = await api('/api/stato'); document.title = S.marchio || 'Bussola'; const [dove, ...resto] = (location.hash.slice(1) || 'oggi').split('/');
+    S = await api('/api/stato'); document.title = (S.marchio || 'Bussola') + (S.esempio ? ' · esempio' : ''); const [dove, ...resto] = (location.hash.slice(1) || 'oggi').split('/');
     if (dove !== 'mese' && bozza?.mensile) bozza = null;
     await (PAGINE[dove] || oggi)();
   } catch (e) { errore(e); }

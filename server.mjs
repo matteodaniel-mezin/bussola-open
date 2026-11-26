@@ -823,7 +823,7 @@ async function stato() {
   { // La fine che manca si prende da dati/calendario.json (stesso giorno, stessa ora, titolo simile).
     const cj = await leggiJson('calendario.json'), oggiCal = (cj.eventi || []).filter(e => e.data === oggiIso() && e.fine), nome = t => String(t || '').toLowerCase().replace(/[^a-zà-ú0-9]+/g, ' ').trim();
     ag.eventi = ag.eventi.map(e => { if (e.fine) return e; const c = oggiCal.find(x => x.ora === e.ora && (nome(x.titolo).includes(nome(e.titolo)) || nome(e.titolo).includes(nome(x.titolo)))) || oggiCal.find(x => x.ora === e.ora); return c ? { ...e, fine: c.fine } : e; }); }
-  return { nome: CONFIG.nome || '', marchio: CONFIG.titolo || 'Bussola', nascondi: Array.isArray(CONFIG.nascondi) ? CONFIG.nascondi : [], obiettivoSoldi: Number(CONFIG.obiettivoSoldi) || 0, data: oggiIso(), titolo: titoloGiorno(oggiIso()), primaVolta, checkMensile: !primaVolta && bussola.ultimoCheck !== oggiIso().slice(0, 7), riallineamento: primaVolta ? null : await leggiRiallineamento(), oggi, settimana: primaVolta ? [] : await leggiSettimana(), agenda: ag, segnale: await leggiSegnale(), cambi: await cambiAperti() };
+  return { esempio: ESEMPIO, nome: CONFIG.nome || '', marchio: CONFIG.titolo || 'Bussola', nascondi: Array.isArray(CONFIG.nascondi) ? CONFIG.nascondi : [], obiettivoSoldi: Number(CONFIG.obiettivoSoldi) || 0, data: oggiIso(), titolo: titoloGiorno(oggiIso()), primaVolta, checkMensile: !primaVolta && bussola.ultimoCheck !== oggiIso().slice(0, 7), riallineamento: primaVolta ? null : await leggiRiallineamento(), oggi, settimana: primaVolta ? [] : await leggiSettimana(), agenda: ag, segnale: await leggiSegnale(), cambi: await cambiAperti() };
 }
 const rotte = {
   'GET /api/stato': stato,

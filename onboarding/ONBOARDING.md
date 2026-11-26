@@ -21,7 +21,7 @@ Senza fare domande, in parallelo:
 - connettori di Claude disponibili in questa sessione (Google Calendar, Google Sheets, Fathom, Vercel, Supabase);
 - un `~/.claude/CLAUDE.md` che parli già di un second brain.
 
-Poi avvia Bussola sul vault di esempio (`node server.mjs`, con `BUSSOLA_PORT` se la 4321 è occupata) e tienilo acceso per tutto l'onboarding.
+Poi avvia Bussola sul vault di esempio e dillo subito all'utente: quello che vede sono persone e numeri **inventati**, che spariscono quando colleghi il suo vault. Avvia (`node server.mjs`, con `BUSSOLA_PORT` se la 4321 è occupata) e tienilo acceso per tutto l'onboarding.
 
 Fatto quando: ogni voce qui sopra ha una risposta e il server risponde. Scrivi il risultato nel profilo, sezione `## Computer`, e crea il profilo con `stato: in corso` e `passo: 2`.
 

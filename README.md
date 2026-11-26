@@ -19,7 +19,7 @@ cd bussola-open
 node server.mjs
 ```
 
-Apri `http://localhost:4321`. Senza configurazione Bussola crea e usa un vault di esempio (`vault-esempio/`), con persone, clienti e numeri inventati. Per rifarlo da capo: `node strumenti/crea-esempio.mjs --forza`.
+Apri `http://localhost:4321`. Senza configurazione Bussola crea e usa un vault di esempio (`vault-esempio/`), con persone, clienti e numeri inventati: un avviso giallo nella barra lo ricorda finché non colleghi il tuo vault. Per rifarlo da capo: `node strumenti/crea-esempio.mjs --forza`.
 
 ## La tua copia
 
